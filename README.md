@@ -6,7 +6,7 @@ The APsystems EZ1 Python library can be used to interact with APsystems EZ1 Micr
 ---
 
 ## About Sonnenladen GmbH
-**This library is proudly published, maintained, and developed by Sonnenladen GmbH. Our collaboration with the APsystems R&D Team has been instrumental in making this API a reality. At Sonnenladen GmbH, we are committed to providing top-notch solar energy solutions and are excited to offer this library to enhance the experience of using APsystems inverters.**
+**This library is published, maintained, and developed by Sonnenladen GmbH. Our collaboration with the APsystems R&D Team has been instrumental in making this API a reality. At Sonnenladen GmbH, we are committed to providing top-notch solar energy solutions and are excited to offer this library to enhance the experience of using APsystems inverters.**
 
 ## Purchase APsystems Inverters
 For those interested in purchasing APsystems inverters, please visit our German online shop at [Sonnenladen](https://www.sonnenladen.de/). We offer a range of APsystems products, backed by our expertise in solar energy solutions.
@@ -56,29 +56,37 @@ pip install apsystems-ez1
 Here's a quick example of how to use the APsystemsEZ1 library:
 
 ```python
-import APsystemsEZ1M
+from APsystemsEZ1 import APsystemsEZ1M
+import asyncio
 
-# Initialize the connection to the inverter
 inverter = APsystemsEZ1M("192.168.1.100", 8050)
 
-# Get device information
-device_info = inverter.get_device_info()
-print("Device Information:", device_info)
+async def main():
+    # Get device information
+    device_info = await inverter.get_device_info()
+    print("Device Information:", device_info)
 
-# Get alarm information
-alarm_info = inverter.get_alarm_info()
-print("Alarm Information:", alarm_info)
+    # Get device information
+    device_info = await inverter.get_device_info()
+    print("Device Information:", device_info)
 
-# Get output data
-output_data = inverter.get_output_data()
-print("Output Data:", output_data)
+    # Get alarm information
+    alarm_info = await inverter.get_alarm_info()
+    print("Alarm Information:", alarm_info)
 
-# Set maximum power limit
-inverter.set_max_power(500)
+    # Get output data
+    output_data = await inverter.get_output_data()
+    print("Output Data:", output_data)
 
-# Get current power status
-power_status = inverter.get_device_power_status()
-print("Power Status:", power_status)
+    # Set maximum power limit
+    await inverter.set_max_power(500)
+
+    # Get current power status
+    power_status = await inverter.get_device_power_status()
+    print("Power Status:", power_status)
+
+# Run the main coroutine
+asyncio.run(main())
 ```
 
 ## Methods
@@ -99,7 +107,7 @@ The library includes several methods to interact with the microinverter:
 ## Recommendations
 - We highly recommend to set a **static IP** for the inverter you want to interact with. This can be achieved be accessing your local router, searching for the inverters IP and setting it to "static ip" or similar. A quick Google search will tell you how to do it exactly for your specific router model.
 ## Error Handling
-The library includes basic error handling for HTTP and connection errors. Error messages are printed to the console.
+The library includes basic error handling for HTTP and connection errors.
 
 ## Contribute to this project
 - Everyone is invited to commit changes to this library. This is considered a community project to realise countless projects that may need very specific new functionality. We're happy to see your ideas ;)
