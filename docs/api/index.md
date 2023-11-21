@@ -1,4 +1,4 @@
 # Reference
-::: APsystems-EZ1-API
+::: APsystemsEZ1
     options:
       annotations_path: source
