@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "APsystems-EZ1-API"
-version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
+version = "0.1.8"
+description = "The APsystems EZ1 Python library offers a streamlined interface for interacting with the local API of APsystems EZ1 Microinverters."
+authors = ["Sonnenladen GmbH <l.tiedt@sonnenladen.de>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
