@@ -137,9 +137,9 @@ Here's a quick example of how to use the APsystemsEZ1 library:
 
 ```python
 from APsystemsEZ1 import APsystemsEZ1M # import the library
-import asyncio # this is a async lib so we have to import asynchio
+import asyncio # this is an async based lib so we have to import asynchio
 
-inverter = APsystemsEZ1M("192.168.1.100", 8050) # initialize an inverter with the name "inverter" on IP-address "192.168.1.100". 
+inverter = APsystemsEZ1M("192.168.1.100", 8050) # initialize an inverter on "192.168.1.100"
 
 async def main():
     # Get device information
@@ -168,6 +168,8 @@ async def main():
 # Run the main coroutine
 asyncio.run(main())
 ```
+
+- More examples can be found in our Wiki.
 
 ## Methods
 The library includes several methods to interact with the microinverter:
