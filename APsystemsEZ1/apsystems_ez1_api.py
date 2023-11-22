@@ -258,7 +258,7 @@ class APsystemsEZ1M:
         """
         if str(power_status) == "1" or str(power_status) == "SLEEP" or str(power_status) == "OFF":
             resp = await self._request("setOnOff?status=1")
-        if str(power_status) == "0" or str(power_status) == "ON":
+        elif str(power_status) == "0" or str(power_status) == "ON":
             resp = await self._request("setOnOff?status=0")
         else:
             raise ValueError("Invalid power status: expected '0', 'ON' or '1','SLEEP' or 'OFF', got '" + str(
