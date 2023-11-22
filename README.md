@@ -6,7 +6,7 @@ The APsystems EZ1 Python library can be used to interact with APsystems EZ1 Micr
 ---
 
 ## About Sonnenladen GmbH
-**This library is published, maintained, and developed by Sonnenladen GmbH. Our collaboration with the APsystems R&D Team has been instrumental in making this API a reality. At Sonnenladen GmbH, we are committed to providing top-notch solar energy solutions and are excited to offer this library to enhance the experience of using APsystems inverters.**
+This library is published, maintained, and developed by Sonnenladen GmbH. Our collaboration with the APsystems R&D Team has been instrumental in making this API a reality. At Sonnenladen GmbH, we are committed to providing top-notch solar energy solutions and are excited to offer this library to enhance the experience of using APsystems inverters.
 
 ## Purchase APsystems Inverters
 For those interested in purchasing APsystems inverters, please visit our German online shop at [Sonnenladen](https://www.sonnenladen.de/). We offer a range of APsystems products, backed by our expertise in solar energy solutions.
@@ -44,13 +44,76 @@ For those interested in purchasing APsystems inverters, please visit our German 
 </table>
 
 ## Installation
-- To use the APsystemsEZ1 library, you need to have Python 3.10 installed on your system. 
-- You can easily install the `apsystems_ez1m` library via pip. The package is hosted on PyPI, making it straightforward to install and update. To install, run the following command:
+- To use the APsystemsEZ1 library, you need to have Python >=3.8 installed on your system.
+- - See the following guides to install Python: https://www.python.org/downloads/
+- You can easily install the `apsystems-ez1` library via pip. The package is hosted on PyPI, making it straightforward to install and update. To install, run the following command:
 
 
 ```bash
 pip install apsystems-ez1
 ```
+- NOTE: You need to have pip installed on your system. See the following guides to do so: https://pip.pypa.io/en/stable/installation/
+
+## Python Compatibility
+- We tested our library on multiple platform and can confirm functionality:
+<table>
+<tbody>
+<tr>
+<th>Language</th>
+<th>Version</th>
+<th>OS</th>
+<th>Plattform</th>
+<th>Support / Compatibility</th>
+</tr>
+<tr>
+<td align="center">
+<p><strong>Python:</strong></p>
+
+<td align="center">
+<p>Python 3.8</p>
+<p>Python 3.9</p>
+<p>Python 3.10</p>
+<p>Python 3.11</p>
+<p>Python 3.12</p>
+</td>
+<td align="center">
+<p>MacOS</p>
+<p>Linux</p>
+<p>Windows</p>
+<p>etc.</p>
+</td>
+<td align="center">
+<p>PCs and Laptops</p>
+<p>Home Servers</p>
+<p>Virtual Machines</p>
+<p>Single Board Computers (Raspberry Pi)</p>
+</td>
+<td align="center"><img src="https://img.icons8.com/?size=96&id=sz8cPVwzLrMP&format=png" alt="Compatible-Checkmark" width="30" /></td>
+</tr>
+<tr>
+<td align="center">
+<p><strong>MicroPython:</strong></p>
+<td align="center">
+<p>N/A</p>
+</td>
+<td align="center">
+<p>MacOS</p>
+<p>Linux</p>
+<p>Windows</p>
+<p>etc.</p>
+</td>
+<td align="center">
+<p>Raspbery Pi Pico</p>
+<p>ESP8266 and ESP32</p>
+<p>STM32 Microcontrollers</p>
+<p>Teensy, Pyboard</p>
+
+<p>and many more..</p>
+</td>
+<td align="center"><img src="https://img.icons8.com/?size=96&id=T9nkeADgD3z6&format=png" alt="Compatible-Checkmark" width="30" /></td>
+</tr>
+</tbody>
+</table>
 
 ## Usage
 Here's a quick example of how to use the APsystemsEZ1 library:
