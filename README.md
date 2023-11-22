@@ -44,10 +44,19 @@ For those interested in purchasing APsystems inverters, please visit our German 
 </table>
 
 ## Setup your Inverter
-The local API access need to be activated once in the settings of the EZ1. Please follow Step-By-Step Guide to do so:
-<td align="center"><img src="assets/images/APsystems-Lokale-API-Aktivieren-Schritt1-3.png" alt="APsystems EZ1-M Inverter" width="820" /></td>
-<td align="center"><img src="assets/images/APsystems-Lokale-API-Aktivieren-Schritt4-6.png" alt="APsystems EZ1-M Inverter" width="820" /></td>
-
+The local API access need to be activated once in the settings of the EZ1. Please follow our Step-By-Step Guide to do so:
+<p><img src="assets/images/APsystems-Lokale-API-Aktivieren-Schritt1-3.png" alt="APsystems EZ1-M Inverter" width="820" /></p>
+<ul>
+<li>Step 1: Connect to the inverter using the "Direct Connection" method.</li>
+<li>Step 2: Establish a connection with your inverter.</li>
+<li>Step 3: Select the Settings menu.</li>
+</ul>
+<p><img src="assets/images/APsystems-Lokale-API-Aktivieren-Schritt4-6.png" alt="APsystems EZ1-M Inverter" width="820" /></p>
+<ul>
+<li>Step 4: Switch to the "Local Mode" section.</li>
+<li>Step 5: Activate local mode and select "Continuous"</li>
+<li>Step 6: Done! Make a note of the IP address for future reference.</li>
+</ul>
 
 ## Installation
 - To use the APsystemsEZ1 library, you need to have Python >=3.8 installed on your system.
