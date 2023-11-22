@@ -75,7 +75,7 @@ pip install apsystems-ez1
 <tbody>
 <tr>
 <th>Language</th>
-<th> - Version - </th>
+<th> -Version- </th>
 <th>OS</th>
 <th>Plattform</th>
 <th>Support / Compatibility</th>
