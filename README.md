@@ -43,6 +43,12 @@ For those interested in purchasing APsystems inverters, please visit our German 
 </tbody>
 </table>
 
+## Setup your Inverter
+The local API access need to be activated once in the settings of the EZ1. Please follow Step-By-Step Guide to do so:
+<td align="center"><img src="assets/images/APsystems-Lokale-API-Aktivieren-Schritt1-3.png" alt="APsystems EZ1-M Inverter" width="770" /></td>
+<td align="center"><img src="assets/images/APsystems-Lokale-API-Aktivieren-Schritt4-6.png" alt="APsystems EZ1-M Inverter" width="770" /></td>
+
+
 ## Installation
 - To use the APsystemsEZ1 library, you need to have Python >=3.8 installed on your system.
 - - See the following guides to install Python: https://www.python.org/downloads/
