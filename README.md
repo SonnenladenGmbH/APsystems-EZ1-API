@@ -60,17 +60,17 @@ The local API access need to be activated once in the settings of the EZ1. Pleas
 
 ## Installation
 - To use the APsystemsEZ1 library, you need to have Python >=3.8 installed on your system.
-- - See the following guides to install Python: https://www.python.org/downloads/
+- - See the following guide to install the latest Python release: https://www.python.org/downloads/
 - You can easily install the `apsystems-ez1` library via pip. The package is hosted on PyPI, making it straightforward to install and update. To install, run the following command:
 
 
 ```bash
 pip install apsystems-ez1
 ```
-- NOTE: You need to have pip installed on your system. See the following guides to do so: https://pip.pypa.io/en/stable/installation/
+- NOTE: You need to have pip installed on your system. See the following guide to do so: https://pip.pypa.io/en/stable/installation/
 
 ## Python Compatibility
-- We tested our library on multiple platform and can confirm functionality:
+- We tested our library on multiple platforms and python versions and can confirm functionality:
 <table>
 <tbody>
 <tr>
@@ -125,7 +125,9 @@ pip install apsystems-ez1
 
 <p>and many more..</p>
 </td>
-<td align="center"><img src="https://img.icons8.com/?size=96&id=T9nkeADgD3z6&format=png" alt="Compatible-Checkmark" width="30" /></td>
+<td align="center"><img src="https://img.icons8.com/?size=96&id=T9nkeADgD3z6&format=png" alt="Compatible-Checkmark" width="30" />
+<p>We're working on it...</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -134,10 +136,10 @@ pip install apsystems-ez1
 Here's a quick example of how to use the APsystemsEZ1 library:
 
 ```python
-from APsystemsEZ1 import APsystemsEZ1M
-import asyncio
+from APsystemsEZ1 import APsystemsEZ1M # import the library
+import asyncio # this is a async lib so we have to import asynchio
 
-inverter = APsystemsEZ1M("192.168.1.100", 8050)
+inverter = APsystemsEZ1M("192.168.1.100", 8050) # initialize an inverter with the name "inverter" on IP-address "192.168.1.100". 
 
 async def main():
     # Get device information
