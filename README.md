@@ -86,7 +86,6 @@ pip install apsystems-ez1
 <p><strong>Python:</strong></p>
 
 <td align="center">
-<p>Python 3.8</p>
 <p>Python 3.9</p>
 <p>Python 3.10</p>
 <p>Python 3.11</p>
