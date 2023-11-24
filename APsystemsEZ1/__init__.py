@@ -236,7 +236,7 @@ class APsystemsEZ1M:
         """
         return Status(int((await self._request("getOnOff"))["data"]["status"]))
 
-    async def set_device_power_status(self, power_status: int) -> Status:
+    async def set_device_power_status(self, power_status) -> Status:
         """
         Sets the power status of the device to either on or off. This method sends a request to the
         "setOnOff" endpoint with a specified power status parameter. The power status accepts multiple

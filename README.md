@@ -19,7 +19,9 @@ For those interested in purchasing APsystems inverters, please visit our German 
 - **Set and get maximum power limits** (30 W up to 800 W)
 - **Manage device power status** (sleep_mode/on/off)
 - **Calculate combined power output and total energy generated**
-- and much more...
+- and much more...</br>
+</br>
+- See our **Home Assistant** Integration based on this library: https://github.com/SonnenladenGmbH/APsystems-EZ1-API-HomeAssistant
 
 ## Device Compatibility
 - This table includes all micro-inverters we tested and can confirm 100 % compatbility with this library.
@@ -59,9 +61,11 @@ The local API access needs to be activated once in the settings of the EZ1. Plea
 (To ensure a successful connection to your Wi-Fi network, it's essential to first set up your device using the standard procedure outlined in the APsystems Quickstart Guide. This initial setup is a crucial step before proceeding with any further configurations or usage.)
 </ul>
 
+---
 ## Installation
 - To use the APsystemsEZ1 library, you need to have Python >=3.8 installed on your system.
-- - See the following guide to install the latest Python release: https://www.python.org/downloads/
+- See the following guide to install the latest Python release: https://www.python.org/downloads <br>
+<br>
 - You can easily install the `apsystems-ez1` library via pip. The package is hosted on PyPI, making it straightforward to install and update. To install, run the following command:
 
 
@@ -133,38 +137,118 @@ pip install apsystems-ez1
 Here's a quick example of how to use the APsystemsEZ1 library:
 
 ```python
-from APsystemsEZ1 import APsystemsEZ1M # import the library
-import asyncio # this is an async based lib so we have to import asynchio
+from APsystemsEZ1 import APsystemsEZ1M # import the APsystemsEZ1 library
+import asyncio
 
-inverter = APsystemsEZ1M("192.168.1.100", 8050) # initialize an inverter on "192.168.1.100"
+# Initialize the inverter with the specified IP address and port number.
+inverter = APsystemsEZ1M("192.168.1.100", 8050)
 
 async def main():
-    # Get device information
-    device_info = await inverter.get_device_info()
-    print("Device Information:", device_info)
+    try:
+        # Get device information
+        device_info = await inverter.get_device_info()
+        print("Device Information:", device_info)
 
-    # Get device information
-    device_info = await inverter.get_device_info()
-    print("Device Information:", device_info)
+        # Get alarm information
+        alarm_info = await inverter.get_alarm_info()
+        print("Alarm Information:", alarm_info)
 
-    # Get alarm information
-    alarm_info = await inverter.get_alarm_info()
-    print("Alarm Information:", alarm_info)
+        # Get output data
+        output_data = await inverter.get_output_data()
+        print("Output Data:", output_data)
 
-    # Get output data
-    output_data = await inverter.get_output_data()
-    print("Output Data:", output_data)
+        # Set maximum power limit (ensure the value is within valid range)
+        set_power_response = await inverter.set_max_power(500)
+        print("Set Power Response:", set_power_response)
 
-    # Set maximum power limit
-    await inverter.set_max_power(500)
+        # Set power status (ensure "ON" or other value is valid)
+        set_power_status_response = await inverter.set_device_power_status("ON")
+        print("Set Power Status Response:", set_power_status_response)
 
-    # Get current power status
-    power_status = await inverter.get_device_power_status()
-    print("Power Status:", power_status)
+        # Get current power status
+        power_status = await inverter.get_device_power_status()
+        print("Power Status:", power_status)
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 # Run the main coroutine
 asyncio.run(main())
 ```
+---
+## Examples - Retrieve Basic Data
+Fetch and display data from the inverter.<br>
+This function performs the following tasks:<br>
+1. Fetches output data from the inverter.
+2. Extracts relevant information from the fetched data.
+3. Prints the power input from two PV inputs and the total generation for the day.
+
+```python
+from APsystemsEZ1 import APsystemsEZ1M
+import asyncio
+
+# Initialize the inverter with the specified IP address and port number.
+inverter = APsystemsEZ1M("192.168.178.168", 8050)
+
+async def main():
+    try:
+        # Fetch output data from the inverter.
+        response = await inverter.get_output_data()
+
+        # Display power input from PV-Input 1 and 2.
+        print("Power PV-Input 1: " + str(response.p1) + " W")
+        print("Power PV-Input 2: " + str(response.p2) + " W")
+
+        # Display total energy generation for the current day.
+        print("Generation today " + str(round(response.e1 + response.e2, 3)) + " kWh")
+    except Exception as e:
+        # Handle any exceptions that occur during the data fetch and print the error.
+        print(f"An error occurred: {e}")
+
+# Run the main coroutine.
+# This is the entry point of the script and it runs the main function in an asynchronous manner.
+asyncio.run(main())
+
+```
+Example Output:<br>
+`Power PV-Input 1: 126 W`<br>
+`Power PV-Input 2: 161 W`<br>
+`Generation today: 3.167 kWh`<br>
+
+---
+## Examples - Set a maximum power output limit
+Set the maximum power output limit of the inverter and display the response.<br>
+This script performs the following tasks:<br>
+1. Sets the maximum output power of the inverter to a specified value (e.g., 60 Watts).
+2. Awaits the response from the inverter after setting the power limit.
+3. Prints the response from the inverter to confirm the change or indicate any errors.
+```python
+from APsystemsEZ1 import APsystemsEZ1M
+import asyncio
+
+# Initialize the inverter with the specified IP address and port number.
+inverter = APsystemsEZ1M("192.168.178.168", 8050)
+
+async def main():
+    try:
+        # Fetch output data from the inverter.
+        response = await inverter.get_output_data()
+
+        # Display power input from PV-Input 1 and 2.
+        print("Power PV-Input 1: " + str(response.p1) + " W")
+        print("Power PV-Input 2: " + str(response.p2) + " W")
+
+        # Display total energy generation for the current day.
+        print("Generation today " + str(round(response.e1 + response.e2, 3)) + " kWh")
+    except Exception as e:
+        # Handle any exceptions that occur during the data fetch and print the error.
+        print(f"An error occurred: {e}")
+
+# Run the main coroutine.
+# This is the entry point of the script and it runs the main function in an asynchronous manner.
+asyncio.run(main())
+
+```
+---
 
 - More examples can be found in our Wiki.
 
@@ -180,11 +264,9 @@ The library includes several methods to interact with the microinverter. You can
 * `set_max_power(power_limit)`: Sets the maximum power limit of the device.
 * `get_device_power_status()`: Retrieves the current power status of the device.
 * `set_device_power_status(power_status)`: Sets the power status of the device.
-* for a more detailed documentation see our GitHub Pages.
+* **for a more detailed documentation see our GitHub Pages.**
 ## Recommendations
 - We highly recommend to set a **static IP** for the inverter you want to interact with. This can be achieved be accessing your local router, searching for the inverters IP and setting it to "static ip" or similar. A quick Google search will tell you how to do it exactly for your specific router model.
-## Error Handling
-The library includes basic error handling for HTTP and connection errors.
 
 ## Contribute to this project
 - Everyone is invited to commit changes to this library. This is considered a community project to realise countless projects that may need very specific new functionality. We're happy to see your ideas ;)
