@@ -19,9 +19,8 @@ For those interested in purchasing APsystems inverters, please visit our German 
 - **Set and get maximum power limits** (30 W up to 800 W)
 - **Manage device power status** (sleep_mode/on/off)
 - **Calculate combined power output and total energy generated**
-- and much more...</br>
-</br>
-- **See our Home Assistant Integration based on this library:** 
+- and much more...</br></br>
+- **See our Home Assistant Integration based on this library:**
 - https://github.com/SonnenladenGmbH/APsystems-EZ1-API-HomeAssistant
 
 ## Device Compatibility
