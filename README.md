@@ -37,6 +37,7 @@ For those interested in purchasing APsystems inverters, please visit our German 
 <td align="center"><img src="https://github.com/SonnenladenGmbH/APsystems-EZ1-API/raw/main/assets/images/APsystems-EZ1-M.png" alt="APsystems EZ1-M Inverter" width="150" /></td>
 <td align="center">
 <p><strong>APsystems EZ1-M</strong></p>
+<p>(Firmware: EZ1 1.6.0)</p>
 
 </td>
 <td align="center"><img src="https://img.icons8.com/color/48/000000/checkmark.png" alt="Compatible-Checkmark" width="30" /></td>
