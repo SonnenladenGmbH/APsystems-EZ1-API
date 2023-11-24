@@ -132,6 +132,15 @@ pip install apsystems-ez1
 </tbody>
 </table>
 
+---
+## Documentation
+For a complete understanding of the APsystems EZ1 Python Library, refer to our online documentation. It includes detailed descriptions of the library's functionality, usage examples, and regular updates on new features and improvements.
+
+**Access the Documentation: [APsystems EZ1M Python Library Documentation 📖](https://sonnenladengmbh.github.io/APsystems-EZ1-API/)**
+
+This resource is designed to support both new and experienced users in implementing and optimizing the library in their projects.
+
+---
 ## Usage
 Here's a quick example of how to use the APsystemsEZ1 library:
 
