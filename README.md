@@ -21,7 +21,8 @@ For those interested in purchasing APsystems inverters, please visit our German 
 - **Calculate combined power output and total energy generated**
 - and much more...</br>
 </br>
-- See our **Home Assistant** Integration based on this library: https://github.com/SonnenladenGmbH/APsystems-EZ1-API-HomeAssistant
+- **See our Home Assistant Integration based on this library:** 
+- https://github.com/SonnenladenGmbH/APsystems-EZ1-API-HomeAssistant
 
 ## Device Compatibility
 - This table includes all micro-inverters we tested and can confirm 100 % compatbility with this library.
