@@ -37,7 +37,7 @@ For those interested in purchasing APsystems inverters, please visit our German 
 <td align="center"><img src="assets/images/APsystems-EZ1-M.png" alt="APsystems EZ1-M Inverter" width="150" /></td>
 <td align="center">
 <p><strong>APsystems EZ1-M</strong></p>
-<p>(Firmware: V1.17)</p>
+
 </td>
 <td align="center"><img src="https://img.icons8.com/color/48/000000/checkmark.png" alt="Compatible-Checkmark" width="30" /></td>
 <td align="center"><a href="https://www.sonnenladen.de/APsystems-EZ1-M-600-800-W-Mikrowechselrichter-ohne-Anschlusskabel/AP-07-000-0" target="_blank" rel="noopener"><strong>Sonnenladen GmbH - Online Shop</strong></a><br /><a href="https://www.sonnenladen.de/APsystems-EZ1-M-600-800-W-Mikrowechselrichter-ohne-Anschlusskabel/AP-07-000-0" target="_blank" rel="noopener">IN STOCK | AUF LAGER</a></td>
@@ -64,8 +64,7 @@ The local API access needs to be activated once in the settings of the EZ1. Plea
 ---
 ## Installation
 - To use the APsystemsEZ1 library, you need to have Python >=3.8 installed on your system.
-- See the following guide to install the latest Python release: https://www.python.org/downloads <br>
-<br>
+- See the following guide to install the latest Python release: https://www.python.org/downloads <br><br>
 - You can easily install the `apsystems-ez1` library via pip. The package is hosted on PyPI, making it straightforward to install and update. To install, run the following command:
 
 
