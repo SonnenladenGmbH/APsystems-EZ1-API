@@ -90,10 +90,7 @@ pip install apsystems-ez1
 <p><strong>Python:</strong></p>
 
 <td align="center">
-<p>Python 3.9</p>
-<p>Python 3.10</p>
-<p>Python 3.11</p>
-<p>Python 3.12</p>
+<p>Python 3.11+</p>
 </td>
 <td align="center">
 <p>MacOS</p>
