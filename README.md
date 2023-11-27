@@ -277,6 +277,11 @@ The library includes several methods to interact with the microinverter. You can
 ## Contribute to this project
 - Everyone is invited to commit changes to this library. This is considered a community project to realise countless projects that may need very specific new functionality. We're happy to see your ideas ;)
 - You're also welcome to request new features to be built natively into the inverters API. We're in close contact with APsystems and happy to add new features in the future.
+
+## APsystems API documentation:
+You can find the latest API documentation of APsystems inside the following directory:<br>
+`assets/apsystems-documentation/*`<br>
+https://github.com/SonnenladenGmbH/APsystems-EZ1-API/blob/main/assets/apsystems-documentation/
 ## License
 This library is released under the MIT License.
 
