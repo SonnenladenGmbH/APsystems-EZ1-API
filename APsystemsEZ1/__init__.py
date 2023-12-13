@@ -237,7 +237,7 @@ class APsystemsEZ1M:
         :return: 0/normal when on, 1/alarm when off
         """
         response = await self._request("getOnOff")
-        return Status(response["data"]["status"]) if response else None
+        return Status(int(response["data"]["status"])) if response else None
 
     async def set_device_power_status(self, power_status) -> Status | None:
         """
