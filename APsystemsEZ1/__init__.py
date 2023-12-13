@@ -129,10 +129,10 @@ class APsystemsEZ1M:
         response = await self._request("getAlarm")
         return (
             ReturnAlarmInfo(
-                og=Status(int(response["og"])),
-                isce1=Status(int(response["isce1"])),
-                isce2=Status(int(response["isce2"])),
-                oe=Status(int(response["oe"])),
+                og=Status(int(response["data"]["og"])),
+                isce1=Status(int(response["data"]["isce1"])),
+                isce2=Status(int(response["data"]["isce2"])),
+                oe=Status(int(response["data"]["oe"])),
             )
             if response
             else None
