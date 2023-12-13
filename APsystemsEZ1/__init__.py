@@ -1,4 +1,5 @@
 from aiohttp import ClientSession
+from aiohttp.http_exceptions import HttpBadRequest
 from dataclasses import dataclass
 from enum import IntEnum
 
@@ -78,7 +79,7 @@ class APsystemsEZ1M:
 
         async with ClientSession() as ses, ses.get(url, timeout=self.timeout) as resp:
             if not resp.ok:
-                raise Exception(f"HTTP Error: {resp.status}")
+                raise HttpBadRequest(f"HTTP Error: {resp.status}")
             return await resp.json()
 
     async def get_device_info(self) -> ReturnDeviceInfo:
