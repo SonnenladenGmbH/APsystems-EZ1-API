@@ -127,7 +127,16 @@ class APsystemsEZ1M:
         :return: Information about possible point of failures
         """
         response = await self._request("getAlarm")
-        return ReturnAlarmInfo(**response["data"]) if response else None
+        return (
+            ReturnAlarmInfo(
+                og=Status(int(response["og"])),
+                isce1=Status(int(response["isce1"])),
+                isce2=Status(int(response["isce2"])),
+                oe=Status(int(response["oe"])),
+            )
+            if response
+            else None
+        )
 
     async def get_output_data(self) -> ReturnOutputData | None:
         """
