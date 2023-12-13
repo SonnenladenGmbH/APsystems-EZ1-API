@@ -197,7 +197,9 @@ class APsystemsEZ1M:
         :return: Max output power in watts
         """
         response = await self._request("getMaxPower")
-        return int(response["data"]["maxPower"]) if response else None
+        if response is None or response["data"]["maxPower"] == "":
+            return None
+        return int(response["data"]["maxPower"])
 
     async def set_max_power(self, power_limit: int) -> int | None:
         """
