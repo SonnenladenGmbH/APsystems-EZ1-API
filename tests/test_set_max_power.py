@@ -1,6 +1,4 @@
 import pytest
-import APsystemsEZ1
-from unittest.mock import AsyncMock
 
 
 @pytest.mark.asyncio
@@ -12,11 +10,12 @@ from unittest.mock import AsyncMock
         (800, 800),  # ID: test-happy-path-upper-bound
     ],
 )
-async def test_set_max_power_happy_path(power_limit, expected):
+async def test_set_max_power_happy_path(power_limit, expected, mock_response):
+    # Arrange
+    ez1m = mock_response({"data": {"maxPower": power_limit}})
+
     # Act
-    apsystem = APsystemsEZ1.APsystemsEZ1M(ip_address="0.0.0.0")
-    apsystem._request = AsyncMock(return_value={"data": {"maxPower": power_limit}})
-    result = await apsystem.set_max_power(power_limit)
+    result = await ez1m.set_max_power(power_limit)
 
     # Assert
     assert (
@@ -51,15 +50,14 @@ async def test_set_max_power_happy_path(power_limit, expected):
     ],
 )
 async def test_set_max_power_error_cases(
-    power_limit, expected_exception, expected_message
+    power_limit, expected_exception, expected_message, mock_response
 ):
     # Arrange
-    apsystem = APsystemsEZ1.APsystemsEZ1M(ip_address="0.0.0.0")
-    apsystem._request = AsyncMock(return_value={"data": {"maxPower": power_limit}})
+    ez1m = mock_response({"data": {"maxPower": power_limit}})
 
     # Act & Assert
     with pytest.raises(expected_exception) as exc_info:
-        await apsystem.set_max_power(power_limit)
+        await ez1m.set_max_power(power_limit)
     assert (
         str(exc_info.value) == expected_message
     ), f"Expected error message to be '{expected_message}', but got '{str(exc_info.value)}'"

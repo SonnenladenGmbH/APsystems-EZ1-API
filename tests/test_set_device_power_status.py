@@ -1,7 +1,5 @@
 import pytest
-import APsystemsEZ1
 from APsystemsEZ1 import Status
-from unittest.mock import AsyncMock
 
 
 @pytest.mark.asyncio
@@ -16,14 +14,13 @@ from unittest.mock import AsyncMock
     ],
 )
 async def test_set_device_power_status_happy_paths(
-    input_status, expected_status, test_id
+    input_status, expected_status, test_id, mock_response
 ):
+    # Arrange
+    ez1m = mock_response({"data": {"status": expected_status.value}})
+
     # Act
-    apsystem = APsystemsEZ1.APsystemsEZ1M(ip_address="0.0.0.0")
-    apsystem._request = AsyncMock(
-        return_value={"data": {"status": expected_status.value}}
-    )
-    result = await apsystem.set_device_power_status(input_status)
+    result = await ez1m.set_device_power_status(input_status)
 
     # Assert
     assert result == expected_status, f"Test Failed: {test_id}"
@@ -44,12 +41,13 @@ async def test_set_device_power_status_happy_paths(
         (False, "error_case_boolean_false"),
     ],
 )
-async def test_set_device_power_status_error_cases(input_status, test_id):
-    # Act
-    apsystem = APsystemsEZ1.APsystemsEZ1M(ip_address="0.0.0.0")
-    apsystem._request = AsyncMock()
+async def test_set_device_power_status_error_cases(
+    input_status, test_id, mock_response
+):
+    # Arrange
+    ez1m = mock_response(None)
 
     # Assert
     with pytest.raises(ValueError) as exc_info:
-        await apsystem.set_device_power_status(input_status)
+        await ez1m.set_device_power_status(input_status)
     assert "Invalid power status" in str(exc_info.value), f"Test Failed: {test_id}"

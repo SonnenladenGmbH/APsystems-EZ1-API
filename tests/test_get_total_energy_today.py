@@ -1,6 +1,4 @@
 import pytest
-import APsystemsEZ1
-from unittest.mock import AsyncMock
 
 
 @pytest.mark.asyncio
@@ -69,13 +67,14 @@ from unittest.mock import AsyncMock
         (None, None, "error_case_1"),
     ],
 )
-async def test_get_total_energy_today(output_data, expected_total_energy, test_id):
+async def test_get_total_energy_today(
+    output_data, expected_total_energy, test_id, mock_response
+):
     # Arrange
-    apsystem = APsystemsEZ1.APsystemsEZ1M(ip_address="0.0.0.0")
-    apsystem._request = AsyncMock(return_value=output_data)
+    ez1m = mock_response(output_data)
 
     # Act
-    total_energy = await apsystem.get_total_energy_today()
+    total_energy = await ez1m.get_total_energy_today()
 
     # Assert
     assert total_energy == expected_total_energy, f"Test failed for {test_id}"
