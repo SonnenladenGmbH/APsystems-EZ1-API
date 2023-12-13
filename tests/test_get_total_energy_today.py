@@ -11,10 +11,10 @@ from unittest.mock import AsyncMock
         (
             {
                 "data": {
-                    "te1": 5000.0,
-                    "te2": 3000.0,
-                    "e1": 0.0,
-                    "e2": 0.0,
+                    "e1": 5000.0,
+                    "e2": 3000.0,
+                    "te1": 0.0,
+                    "te2": 0.0,
                     "p1": 0.0,
                     "p2": 0.0,
                 }
@@ -25,10 +25,10 @@ from unittest.mock import AsyncMock
         (
             {
                 "data": {
-                    "te1": 1234.56,
-                    "te2": 789.01,
-                    "e1": 0.0,
-                    "e2": 0.0,
+                    "e1": 1234.56,
+                    "e2": 789.01,
+                    "te1": 0.0,
+                    "te2": 0.0,
                     "p1": 0.0,
                     "p2": 0.0,
                 }
@@ -40,10 +40,10 @@ from unittest.mock import AsyncMock
         (
             {
                 "data": {
-                    "te1": 0.0,
-                    "te2": 3000.0,
                     "e1": 0.0,
-                    "e2": 0.0,
+                    "e2": 3000.0,
+                    "te1": 0.0,
+                    "te2": 0.0,
                     "p1": 0.0,
                     "p2": 0.0,
                 }
@@ -54,10 +54,10 @@ from unittest.mock import AsyncMock
         (
             {
                 "data": {
-                    "te1": 3000.0,
-                    "te2": 0.0,
-                    "e1": 0.0,
+                    "e1": 3000.0,
                     "e2": 0.0,
+                    "te1": 0.0,
+                    "te2": 0.0,
                     "p1": 0.0,
                     "p2": 0.0,
                 }
@@ -69,13 +69,13 @@ from unittest.mock import AsyncMock
         (None, None, "error_case_1"),
     ],
 )
-async def test_get_total_energy_lifetime(output_data, expected_total_energy, test_id):
+async def test_get_total_energy_today(output_data, expected_total_energy, test_id):
     # Arrange
     apsystem = APsystemsEZ1.APsystemsEZ1M(ip_address="0.0.0.0")
     apsystem._request = AsyncMock(return_value=output_data)
 
     # Act
-    total_energy = await apsystem.get_total_energy_lifetime()
+    total_energy = await apsystem.get_total_energy_today()
 
     # Assert
     assert total_energy == expected_total_energy, f"Test failed for {test_id}"
