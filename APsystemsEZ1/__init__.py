@@ -126,9 +126,8 @@ class APsystemsEZ1M:
 
         :return: Information about possible point of failures
         """
-        d = (await self._request("getAlarm"))["data"]
-        return ReturnAlarmInfo(og=Status(int(d["og"])), isce1=Status(int(d["isce1"])),
-                               isce2=Status(int(d["isce2"])), oe=Status(int(d["oe"])))
+        response = await self._request("getAlarm")
+        return ReturnAlarmInfo(**response["data"])
 
     async def get_output_data(self) -> ReturnOutputData:
         """
@@ -149,8 +148,8 @@ class APsystemsEZ1M:
 
         :return: Information about energy/power-related information
         """
-        d = (await self._request("getOutputData"))["data"]
-        return ReturnOutputData(**d)
+        response = await self._request("getOutputData")
+        return ReturnOutputData(**response["data"])
 
     async def get_total_output(self) -> float:
         """
