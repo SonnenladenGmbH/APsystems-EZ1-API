@@ -106,10 +106,8 @@ class APsystemsEZ1M:
         :rtype: ReturnDeviceInfo
 
         """
-        d = (await self._request("getDeviceInfo"))["data"]
-
-        return ReturnDeviceInfo(deviceId=d["deviceId"], devVer=d["devVer"], ssid=d["ssid"], ipAddr=d["ipAddr"],
-                                minPower=int(d["minPower"]), maxPower=int(d["maxPower"]))
+        response  = (await self._request("getDeviceInfo"))["data"]
+        return ReturnDeviceInfo(**response["data"])
 
     async def get_alarm_info(self) -> ReturnAlarmInfo:
         """
