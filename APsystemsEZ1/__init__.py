@@ -127,7 +127,16 @@ class APsystemsEZ1M:
         :return: Information about possible point of failures
         """
         response = await self._request("getAlarm")
-        return ReturnAlarmInfo(**response["data"]) if response else None
+        return (
+            ReturnAlarmInfo(
+                og=Status(int(response["og"])),
+                isce1=Status(int(response["isce1"])),
+                isce2=Status(int(response["isce2"])),
+                oe=Status(int(response["oe"])),
+            )
+            if response
+            else None
+        )
 
     async def get_output_data(self) -> ReturnOutputData | None:
         """
@@ -239,7 +248,9 @@ class APsystemsEZ1M:
         response = await self._request("getOnOff")
         return Status(response["data"]["status"]) if response else None
 
-    async def set_device_power_status(self, power_status: Status | None) -> Status | None:
+    async def set_device_power_status(
+        self, power_status: Status | None
+    ) -> Status | None:
         """
         Sets the power status of the device to either on or off. This method sends a request to the
         "setOnOff" endpoint with a specified power status parameter. The power status accepts multiple
