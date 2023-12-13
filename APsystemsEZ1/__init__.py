@@ -66,17 +66,6 @@ class APsystemsEZ1M:
         :raises: Prints an error message if the HTTP request fails for any reason.
         """
         url = f"{self.base_url}/{endpoint}"
-        # try:
-        #     response = self.session.request(method, url, json=data, timeout=timeout)
-        #     response.raise_for_status()
-        #     return response.json()
-        # except requests.exceptions.HTTPError as err:
-        #     print(f"HTTP error: {err}")
-        # except requests.exceptions.Timeout as err:
-        #     print(f"Timeout error: {err}")
-        # except Exception as err:
-        #     print(f"Error: {err}")
-
         async with ClientSession() as ses, ses.get(url, timeout=self.timeout) as resp:
             if not resp.ok:
                 raise HttpBadRequest(f"HTTP Error: {resp.status}")
