@@ -261,11 +261,15 @@ class APsystemsEZ1M:
         to '0'. Similarly, '1', 'SLEEP', and 'OFF' are treated as equivalent, setting the power status
         to '1'.
         """
-        if str(power_status) == "1" or str(power_status) == "SLEEP" or str(power_status) == "OFF":
+        if str(power_status) in {"1", "SLEEP", "OFF"}:
             resp = await self._request("setOnOff?status=1")
-        elif str(power_status) == "0" or str(power_status) == "ON":
+        elif str(power_status) in {"0", "ON"}:
             resp = await self._request("setOnOff?status=0")
         else:
-            raise ValueError("Invalid power status: expected '0', 'ON' or '1','SLEEP' or 'OFF', got '" + str(
-                power_status) + "'\n Set '0' or 'ON' to start the inverter | Set '1' or 'SLEEP' or 'OFF' to stop the inverter.")
+            raise ValueError(
+                (
+                    f"Invalid power status: expected '0', 'ON' or '1','SLEEP' or 'OFF', got '{str(power_status)}"
+                    + "'\n Set '0' or 'ON' to start the inverter | Set '1' or 'SLEEP' or 'OFF' to stop the inverter."
+                )
+            )
         return Status(int(resp["data"]["status"]))
