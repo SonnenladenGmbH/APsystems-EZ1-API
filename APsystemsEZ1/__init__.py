@@ -106,7 +106,7 @@ class APsystemsEZ1M:
         :rtype: ReturnDeviceInfo
 
         """
-        response  = (await self._request("getDeviceInfo"))["data"]
+        response = (await self._request("getDeviceInfo"))["data"]
         return ReturnDeviceInfo(**response["data"])
 
     async def get_alarm_info(self) -> ReturnAlarmInfo:
@@ -259,13 +259,7 @@ class APsystemsEZ1M:
         to '0'. Similarly, '1', 'SLEEP', and 'OFF' are treated as equivalent, setting the power status
         to '1'.
         """
-        status_map = {
-            "0": "0",
-            "ON": "0",
-            "1": "1",
-            "SLEEP": "1",
-            "OFF": "1"
-            }
+        status_map = {"0": "0", "ON": "0", "1": "1", "SLEEP": "1", "OFF": "1"}
         status_value = status_map.get(str(power_status))
         if status_value is None:
             raise ValueError(
