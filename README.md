@@ -1,18 +1,23 @@
 # APsystems EZ1 -  Python Library
 
 ## Overview
+
 The APsystems EZ1 Python library can be used to interact with APsystems EZ1 Microinverters. It provides a convenient way to communicate with the microinverter over your **local network**, allowing you to read and set various device parameters like power status, alarm information, device information, and power limits.
 
 ---
 
 ## About Sonnenladen GmbH
+
 This library is published, maintained, and developed by Sonnenladen GmbH. Our collaboration with the APsystems R&D Team has been instrumental in making this API a reality. At Sonnenladen GmbH, we are committed to providing top-notch solar energy solutions and are excited to offer this library to enhance the experience of using APsystems inverters.
 
 ## Purchase APsystems Inverters
+
 For those interested in purchasing APsystems inverters, please visit our German online shop at [Sonnenladen](https://www.sonnenladen.de/). We offer a range of APsystems products, backed by our expertise in solar energy solutions.
 
 ---
+
 ## Features
+
 - **Get detailed device information**
 - **Retrieve alarm status information**
 - **Fetch output data** (power output, energy readings)
@@ -21,10 +26,12 @@ For those interested in purchasing APsystems inverters, please visit our German 
 - **Calculate combined power output and total energy generated**
 - and much more...</br></br>
 - **See our Home Assistant Integration based on this library:**
-- https://github.com/SonnenladenGmbH/APsystems-EZ1-API-HomeAssistant
+- <https://github.com/SonnenladenGmbH/APsystems-EZ1-API-HomeAssistant>
 
 ## Device Compatibility
+
 - This table includes all micro-inverters we tested and can confirm 100 % compatbility with this library.
+
 <table>
 <tbody>
 <tr>
@@ -47,6 +54,7 @@ For those interested in purchasing APsystems inverters, please visit our German 
 </table>
 
 ## Setup your Inverter
+
 The local API access needs to be activated once in the settings of the EZ1. Please follow our Step-By-Step Guide to do so:
 <p><img src="https://github.com/SonnenladenGmbH/APsystems-EZ1-API/raw/main/assets/images/APsystems-Lokale-API-Aktivieren-Schritt1-3.png" alt="APsystems EZ1-M Inverter Setup" width="820" /></p>
 <ul>
@@ -63,19 +71,23 @@ The local API access needs to be activated once in the settings of the EZ1. Plea
 </ul>
 
 ---
-## Installation
-- To use the APsystemsEZ1 library, you need to have Python >=3.8 installed on your system.
-- See the following guide to install the latest Python release: https://www.python.org/downloads <br><br>
-- You can easily install the `apsystems-ez1` library via pip. The package is hosted on PyPI, making it straightforward to install and update. To install, run the following command:
 
+## Installation
+
+- To use the APsystemsEZ1 library, you need to have Python >=3.8 installed on your system.
+- See the following guide to install the latest Python release: <https://www.python.org/downloads> <br><br>
+- You can easily install the `apsystems-ez1` library via pip. The package is hosted on PyPI, making it straightforward to install and update. To install, run the following command:
 
 ```bash
 pip install apsystems-ez1
 ```
-- NOTE: You need to have pip installed on your system. See the following guide to do so: https://pip.pypa.io/en/stable/installation/
+
+- NOTE: You need to have pip installed on your system. See the following guide to do so: <https://pip.pypa.io/en/stable/installation/>
 
 ## Python Compatibility
+
 - We tested our library on multiple platforms and python versions and can confirm functionality:
+
 <table>
 <tbody>
 <tr>
@@ -131,7 +143,9 @@ pip install apsystems-ez1
 </table>
 
 ---
+
 ## Documentation
+
 For a complete understanding of the APsystems EZ1 Python Library, refer to our online documentation. It includes detailed descriptions of the library's functionality, usage examples, and regular updates on new features and improvements.
 
 **Access the Documentation: [APsystems EZ1M Python Library Documentation 📖](https://sonnenladengmbh.github.io/APsystems-EZ1-API/)**
@@ -139,7 +153,9 @@ For a complete understanding of the APsystems EZ1 Python Library, refer to our o
 This resource is designed to support both new and experienced users in implementing and optimizing the library in their projects.
 
 ---
+
 ## Usage
+
 Here's a quick example of how to use the APsystemsEZ1 library:
 
 ```python
@@ -180,10 +196,14 @@ async def main():
 # Run the main coroutine
 asyncio.run(main())
 ```
+
 ---
+
 ## Examples - Retrieve Basic Data
+
 Fetch and display data from the inverter.<br>
 This function performs the following tasks:<br>
+
 1. Fetches output data from the inverter.
 2. Extracts relevant information from the fetched data.
 3. Prints the power input from two PV inputs and the total generation for the day.
@@ -215,18 +235,23 @@ async def main():
 asyncio.run(main())
 
 ```
+
 Example Output:<br>
 `Power PV-Input 1: 126 W`<br>
 `Power PV-Input 2: 161 W`<br>
 `Generation today: 3.167 kWh`<br>
 
 ---
+
 ## Examples - Set a maximum power output limit
+
 Set the maximum power output limit of the inverter and display the response.<br>
 This script performs the following tasks:<br>
+
 1. Sets the maximum output power of the inverter to a specified value (e.g., 60 Watts).
 2. Awaits the response from the inverter after setting the power limit.
 3. Prints the response from the inverter to confirm the change or indicate any errors.
+
 ```python
 from APsystemsEZ1 import APsystemsEZ1M
 import asyncio
@@ -254,35 +279,43 @@ async def main():
 asyncio.run(main())
 
 ```
+
 ---
 
 - More examples can be found in our Wiki.
 
 ## Methods
+
 The library includes several methods to interact with the microinverter. You can find all of them with comprehensive docs ion our GitHub Pages.
 
-* `get_device_info()`: Retrieves detailed information about the device.
-* `get_alarm_info()`: Fetches the alarm status information for various components of the device.
-* `get_output_data()`: Retrieves the output data from the device.
-* `get_total_energy_today()`: Retrieves the total energy generated today by inverter inputs.
-* `get_total_energy_lifetime()`: Retrieves the total lifetime energy generated by inverter inputs.
-* `get_max_power()`: Retrieves the set maximum power setting of the device.
-* `set_max_power(power_limit)`: Sets the maximum power limit of the device.
-* `get_device_power_status()`: Retrieves the current power status of the device.
-* `set_device_power_status(power_status)`: Sets the power status of the device.
-* **for a more detailed documentation see our GitHub Pages.**
+- `get_device_info()`: Retrieves detailed information about the device.
+- `get_alarm_info()`: Fetches the alarm status information for various components of the device.
+- `get_output_data()`: Retrieves the output data from the device.
+- `get_total_energy_today()`: Retrieves the total energy generated today by inverter inputs.
+- `get_total_energy_lifetime()`: Retrieves the total lifetime energy generated by inverter inputs.
+- `get_max_power()`: Retrieves the set maximum power setting of the device.
+- `set_max_power(power_limit)`: Sets the maximum power limit of the device.
+- `get_device_power_status()`: Retrieves the current power status of the device.
+- `set_device_power_status(power_status)`: Sets the power status of the device.
+- **for a more detailed documentation see our GitHub Pages.**
+
 ## Recommendations
+
 - We highly recommend to set a **static IP** for the inverter you want to interact with. This can be achieved be accessing your local router, searching for the inverters IP and setting it to "static ip" or similar. A quick Google search will tell you how to do it exactly for your specific router model.
 
 ## Contribute to this project
+
 - Everyone is invited to commit changes to this library. This is considered a community project to realise countless projects that may need very specific new functionality. We're happy to see your ideas ;)
 - You're also welcome to request new features to be built natively into the inverters API. We're in close contact with APsystems and happy to add new features in the future.
 
-## APsystems API documentation:
+## APsystems API documentation
+
 You can find the latest API documentation of APsystems inside the following directory:<br>
 `assets/apsystems-documentation/*`<br>
-https://github.com/SonnenladenGmbH/APsystems-EZ1-API/blob/main/assets/apsystems-documentation/
+<https://github.com/SonnenladenGmbH/APsystems-EZ1-API/blob/main/assets/apsystems-documentation/>
+
 ## License
+
 This library is released under the MIT License.
 
 ---
