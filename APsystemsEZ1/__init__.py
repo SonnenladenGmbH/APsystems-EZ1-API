@@ -263,10 +263,10 @@ class APsystemsEZ1M:
         to '1'.
         """
         status_map = {
-            "0": "0", 
-            "ON": "0", 
-            "1": "1", 
-            "SLEEP": "1", 
+            "0": "0",
+            "ON": "0",
+            "1": "1",
+            "SLEEP": "1",
             "OFF": "1"
             }
         status_value = status_map.get(str(power_status))
