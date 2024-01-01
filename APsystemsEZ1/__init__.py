@@ -67,17 +67,6 @@ class APsystemsEZ1M:
         :raises: Prints an error message if the HTTP request fails for any reason.
         """
         url = f"{self.base_url}/{endpoint}"
-        # try:
-        #     response = self.session.request(method, url, json=data, timeout=timeout)
-        #     response.raise_for_status()
-        #     return response.json()
-        # except requests.exceptions.HTTPError as err:
-        #     print(f"HTTP error: {err}")
-        # except requests.exceptions.Timeout as err:
-        #     print(f"Timeout error: {err}")
-        # except Exception as err:
-        #     print(f"Error: {err}")
-
         async with ClientSession() as ses, ses.get(url, timeout=self.timeout) as resp:
             if not resp.ok:
                 raise HttpBadRequest(f"HTTP Error: {resp.status}")
@@ -108,6 +97,7 @@ class APsystemsEZ1M:
 
         """
         response = await self._request("getDeviceInfo")
+        print(response)
         return (
             ReturnDeviceInfo(
                 deviceId=response["data"]["deviceId"],
@@ -117,7 +107,7 @@ class APsystemsEZ1M:
                 minPower=int(response["data"]["minPower"]),
                 maxPower=int(response["data"]["maxPower"]),
             )
-            if response
+            if response and response.get("data")
             else None
         )
 
@@ -260,7 +250,9 @@ class APsystemsEZ1M:
         response = await self._request("getOnOff")
         return Status(int(response["data"]["status"])) if response else None
 
-    async def set_device_power_status(self, power_status) -> Status | None:
+    async def set_device_power_status(
+        self, power_status: Status | None
+    ) -> Status | None:
         """
         Sets the power status of the device to either on or off. This method sends a request to the
         "setOnOff" endpoint with a specified power status parameter. The power status accepts multiple
