@@ -1,6 +1,8 @@
-from aiohttp import ClientSession
 from dataclasses import dataclass
 from enum import IntEnum
+
+from aiohttp import ClientSession
+from aiohttp.http_exceptions import HttpBadRequest
 
 
 class Status(IntEnum):
@@ -54,7 +56,7 @@ class APsystemsEZ1M:
         self.base_url = f"http://{ip_address}:{port}"
         self.timeout = timeout
 
-    async def _request(self, endpoint: str) -> dict:
+    async def _request(self, endpoint: str) -> dict | None:
         """
         A private method to send HTTP requests to the specified endpoint of the microinverter.
         This method is used internally by other class methods to perform GET or POST requests.
@@ -78,10 +80,10 @@ class APsystemsEZ1M:
 
         async with ClientSession() as ses, ses.get(url, timeout=self.timeout) as resp:
             if not resp.ok:
-                raise Exception(f"HTTP Error: {resp.status}")
+                raise HttpBadRequest(f"HTTP Error: {resp.status}")
             return await resp.json()
 
-    async def get_device_info(self) -> ReturnDeviceInfo:
+    async def get_device_info(self) -> ReturnDeviceInfo | None:
         """
         Retrieves detailed information about the device. This method sends a request to the
         "getDeviceInfo" endpoint and returns a dictionary containing various details about the device.
@@ -105,12 +107,21 @@ class APsystemsEZ1M:
         :rtype: ReturnDeviceInfo
 
         """
-        d = (await self._request("getDeviceInfo"))["data"]
+        response = await self._request("getDeviceInfo")
+        return (
+            ReturnDeviceInfo(
+                deviceId=response["data"]["deviceId"],
+                devVer=response["data"]["devVer"],
+                ssid=response["data"]["ssid"],
+                ipAddr=response["data"]["ipAddr"],
+                minPower=int(response["data"]["minPower"]),
+                maxPower=int(response["data"]["maxPower"]),
+            )
+            if response
+            else None
+        )
 
-        return ReturnDeviceInfo(deviceId=d["deviceId"], devVer=d["devVer"], ssid=d["ssid"], ipAddr=d["ipAddr"],
-                                minPower=int(d["minPower"]), maxPower=int(d["maxPower"]))
-
-    async def get_alarm_info(self) -> ReturnAlarmInfo:
+    async def get_alarm_info(self) -> ReturnAlarmInfo | None:
         """
         Retrieves the alarm status information for various components of the device. This method
         makes a request to the "getAlarm" endpoint and returns a dictionary containing the alarm
@@ -127,11 +138,19 @@ class APsystemsEZ1M:
 
         :return: Information about possible point of failures
         """
-        d = (await self._request("getAlarm"))["data"]
-        return ReturnAlarmInfo(og=Status(int(d["og"])), isce1=Status(int(d["isce1"])),
-                               isce2=Status(int(d["isce2"])), oe=Status(int(d["oe"])))
+        response = await self._request("getAlarm")
+        return (
+            ReturnAlarmInfo(
+                og=Status(int(response["data"]["og"])),
+                isce1=Status(int(response["data"]["isce1"])),
+                isce2=Status(int(response["data"]["isce2"])),
+                oe=Status(int(response["data"]["oe"])),
+            )
+            if response
+            else None
+        )
 
-    async def get_output_data(self) -> ReturnOutputData:
+    async def get_output_data(self) -> ReturnOutputData | None:
         """
         Retrieves the output data from the device. This method calls a private method `_request`
         with the endpoint "getOutputData" to fetch the device's output data.
@@ -150,10 +169,10 @@ class APsystemsEZ1M:
 
         :return: Information about energy/power-related information
         """
-        d = (await self._request("getOutputData"))["data"]
-        return ReturnOutputData(**d)
+        response = await self._request("getOutputData")
+        return ReturnOutputData(**response["data"]) if response else None
 
-    async def get_total_output(self) -> float:
+    async def get_total_output(self) -> float | None:
         """
         Retrieves and calculates the combined power output status of inverter inputs 1 and 2.
         This method first calls get_output_data() to fetch the output data from the device, which
@@ -163,9 +182,9 @@ class APsystemsEZ1M:
         :return: The sum of power output values 'p1' and 'p2' as a float.
         """
         data = await self.get_output_data()
-        return float(data.p1 + data.p2)
+        return float(data.p1 + data.p2) if data else None
 
-    async def get_total_energy_today(self) -> float:
+    async def get_total_energy_today(self) -> float | None:
         """
         Retrieves and calculates the total energy generated today by both inverter inputs, 1 and 2.
         This method first calls get_output_data() to fetch the output data from the device, which
@@ -176,9 +195,9 @@ class APsystemsEZ1M:
                  generated today in kWh by both inverter inputs.
         """
         data = await self.get_output_data()
-        return float(data.e1 + data.e2)
+        return float(data.e1 + data.e2) if data else None
 
-    async def get_total_energy_lifetime(self) -> float:
+    async def get_total_energy_lifetime(self) -> float | None:
         """
         Retrieves and calculates the total lifetime energy generated by both inverter inputs 1 and 2.
         This method first calls get_output_data() to fetch the output data from the device, which
@@ -190,17 +209,20 @@ class APsystemsEZ1M:
                  total lifetime energy in kWh generated by both inverter inputs.
         """
         data = await self.get_output_data()
-        return float(data.te1 + data.te2)
+        return float(data.te1 + data.te2) if data else None
 
-    async def get_max_power(self) -> int:
+    async def get_max_power(self) -> int | None:
         """Retrieves the set maximum power setting of the device. This method makes a request to the
         "getMaxPower" endpoint and returns a dictionary containing the maximum power limit of the device set by the user.
 
         :return: Max output power in watts
         """
-        return int((await self._request("getMaxPower"))["data"]["maxPower"])
+        response = await self._request("getMaxPower")
+        if response is None or response["data"]["maxPower"] == "":
+            return None
+        return int(response["data"]["maxPower"])
 
-    async def set_max_power(self, power_limit: int) -> int:
+    async def set_max_power(self, power_limit: int) -> int | None:
         """
         Sets the maximum power limit of the device. This method sends a request to the "setMaxPower"
         endpoint with the specified power limit as a parameter. The power limit must be an integer
@@ -217,13 +239,14 @@ class APsystemsEZ1M:
         The key in the 'data' object is:
         - 'maxPower': Indicates the newly set maximum power output of the device in watts.
         """
-        if 30 <= int(power_limit) <= 800:
-            return int((await self._request("setMaxPower?p=" + str(power_limit)))["data"]["maxPower"])
-        else:
+        if not 30 <= power_limit <= 800:
             raise ValueError(
-                "Invalid setMaxPower value: expected int between '30' and '800', got '" + str(power_limit) + "'")
+                f"Invalid setMaxPower value: expected int between '30' and '800', got '{power_limit}'"
+            )
+        request = await self._request(f"setMaxPower?p={power_limit}")
+        return int(request["data"]["maxPower"]) if request else None
 
-    async def get_device_power_status(self) -> Status:
+    async def get_device_power_status(self) -> Status | None:
         """
         Retrieves the current power status of the device. This method sends a request to the
         "getOnOff" endpoint and returns a dictionary containing the power status of the device.
@@ -234,9 +257,10 @@ class APsystemsEZ1M:
 
         :return: 0/normal when on, 1/alarm when off
         """
-        return Status(int((await self._request("getOnOff"))["data"]["status"]))
+        response = await self._request("getOnOff")
+        return Status(int(response["data"]["status"])) if response else None
 
-    async def set_device_power_status(self, power_status) -> Status:
+    async def set_device_power_status(self, power_status) -> Status | None:
         """
         Sets the power status of the device to either on or off. This method sends a request to the
         "setOnOff" endpoint with a specified power status parameter. The power status accepts multiple
@@ -256,11 +280,12 @@ class APsystemsEZ1M:
         to '0'. Similarly, '1', 'SLEEP', and 'OFF' are treated as equivalent, setting the power status
         to '1'.
         """
-        if str(power_status) == "1" or str(power_status) == "SLEEP" or str(power_status) == "OFF":
-            resp = await self._request("setOnOff?status=1")
-        elif str(power_status) == "0" or str(power_status) == "ON":
-            resp = await self._request("setOnOff?status=0")
-        else:
-            raise ValueError("Invalid power status: expected '0', 'ON' or '1','SLEEP' or 'OFF', got '" + str(
-                power_status) + "'\n Set '0' or 'ON' to start the inverter | Set '1' or 'SLEEP' or 'OFF' to stop the inverter.")
-        return Status(int(resp["data"]["status"]))
+        status_map = {"0": "0", "ON": "0", "1": "1", "SLEEP": "1", "OFF": "1"}
+        status_value = status_map.get(str(power_status))
+        if status_value is None:
+            raise ValueError(
+                f"Invalid power status: expected '0', 'ON' or '1','SLEEP' or 'OFF', got '{str(power_status)}"
+                + "'\n Set '0' or 'ON' to start the inverter | Set '1' or 'SLEEP' or 'OFF' to stop the inverter."
+            )
+        request = await self._request(f"setOnOff?status={status_value}")
+        return Status(int(request["data"]["status"])) if request else None
