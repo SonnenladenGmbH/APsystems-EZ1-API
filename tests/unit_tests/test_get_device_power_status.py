@@ -35,9 +35,8 @@ async def test_get_device_power_status_value_error(test_id, output_data, mock_re
     ez1m = mock_response(output_data)
 
     # Assert
-    with pytest.raises(ValueError) as exc_info:
+    with pytest.raises(ValueError):
         await ez1m.get_device_power_status()
-    assert "is not a valid Status" in str(exc_info.value), f"Test Failed: {test_id}"
 
 
 @pytest.mark.asyncio

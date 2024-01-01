@@ -76,8 +76,5 @@ async def test_get_device_info_empty_data(response_data, test_id, mock_response)
     ez1m = mock_response(response_data)
 
     # Assert
-    with pytest.raises(TypeError) as exc_info:
-        await ez1m.get_device_info()
-    assert "missing 6 required positional arguments" in str(
-        exc_info.value
-    ), f"Test Failed: {test_id}"
+    assert await ez1m.get_device_info() is None
+

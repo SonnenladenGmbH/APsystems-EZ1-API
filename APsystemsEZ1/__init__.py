@@ -97,6 +97,7 @@ class APsystemsEZ1M:
 
         """
         response = await self._request("getDeviceInfo")
+        print(response)
         return (
             ReturnDeviceInfo(
                 deviceId=response["data"]["deviceId"],
@@ -106,7 +107,7 @@ class APsystemsEZ1M:
                 minPower=int(response["data"]["minPower"]),
                 maxPower=int(response["data"]["maxPower"]),
             )
-            if response
+            if response and response.get("data")
             else None
         )
 
