@@ -1,7 +1,8 @@
-from aiohttp import ClientSession
-from aiohttp.http_exceptions import HttpBadRequest
 from dataclasses import dataclass
 from enum import IntEnum
+
+from aiohttp import ClientSession
+from aiohttp.http_exceptions import HttpBadRequest
 
 
 class Status(IntEnum):
@@ -96,7 +97,18 @@ class APsystemsEZ1M:
 
         """
         response = await self._request("getDeviceInfo")
-        return ReturnDeviceInfo(**response["data"]) if response else None
+        return (
+            ReturnDeviceInfo(
+                deviceId=response["data"]["deviceId"],
+                devVer=response["data"]["devVer"],
+                ssid=response["data"]["ssid"],
+                ipAddr=response["data"]["ipAddr"],
+                minPower=int(response["data"]["minPower"]),
+                maxPower=int(response["data"]["maxPower"]),
+            )
+            if response
+            else None
+        )
 
     async def get_alarm_info(self) -> ReturnAlarmInfo | None:
         """
@@ -235,7 +247,7 @@ class APsystemsEZ1M:
         :return: 0/normal when on, 1/alarm when off
         """
         response = await self._request("getOnOff")
-        return Status(response["data"]["status"]) if response else None
+        return Status(int(response["data"]["status"])) if response else None
 
     async def set_device_power_status(
         self, power_status: Status | None
