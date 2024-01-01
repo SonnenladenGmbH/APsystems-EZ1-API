@@ -44,7 +44,7 @@ async def test_get_alarm_info_happy_paths(
     response_data, expected_result, test_id, mock_response
 ):
     # Arrange
-    ez1m = mock_response({"data": response_data})
+    ez1m = mock_response({"data": response_data, "status": 0})
 
     # Act
     result = await ez1m.get_alarm_info()
@@ -82,7 +82,7 @@ async def test_get_alarm_info_none_response(expected_result, test_id, mock_respo
 )
 async def test_get_alarm_info_empty_response(response_data, test_id, mock_response):
     # Arrange
-    ez1m = mock_response({"data": response_data})
+    ez1m = mock_response({"data": response_data, "status": 0})
 
     # Assert
     with pytest.raises(KeyError) as exc_info:

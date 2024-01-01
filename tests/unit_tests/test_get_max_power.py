@@ -4,9 +4,9 @@ import pytest
 @pytest.mark.parametrize(
     "test_id, output_data, expected",
     [
-        ("happy-100", {"data": {"maxPower": "100"}}, 100),
-        ("happy-200", {"data": {"maxPower": "200"}}, 200),
-        ("happy-500", {"data": {"maxPower": "500"}}, 500),
+        ("happy-100", {"data": {"maxPower": "100"}, "status": 0}, 100),
+        ("happy-200", {"data": {"maxPower": "200"}, "status": 0}, 200),
+        ("happy-500", {"data": {"maxPower": "500"}, "status": 0}, 500),
     ],
 )
 @pytest.mark.asyncio
@@ -25,8 +25,8 @@ async def test_get_max_power_happy_path(test_id, output_data, expected, mock_res
 @pytest.mark.parametrize(
     "test_id, output_data, expected",
     [
-        ("edge-zero", {"data": {"maxPower": "0"}}, 0),
-        ("edge-empty", {"data": {"maxPower": ""}}, None),
+        ("edge-zero", {"data": {"maxPower": "0"}, "status": 0}, 0),
+        ("edge-empty", {"data": {"maxPower": ""}, "status": 0}, None),
         ("edge-none", None, None),
     ],
 )

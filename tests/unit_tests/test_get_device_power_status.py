@@ -6,8 +6,8 @@ from APsystemsEZ1 import Status
 @pytest.mark.parametrize(
     "test_id, output_data, expected_status",
     [
-        ("happy-on", {"data": {"status": 0}}, Status.normal),
-        ("happy-off", {"data": {"status": 1}}, Status.alarm),
+        ("happy-on", {"data": {"status": 0}, "status": 0}, Status.normal),
+        ("happy-off", {"data": {"status": 1}, "status": 0}, Status.alarm),
     ],
 )
 async def test_get_device_power_status_happy_paths(
@@ -27,7 +27,7 @@ async def test_get_device_power_status_happy_paths(
 @pytest.mark.parametrize(
     "test_id, output_data",
     [
-        ("edge-no-status", {"data": {"status": ""}}),
+        ("edge-no-status", {"data": {"status": ""}, "status": 0}),
     ],
 )
 async def test_get_device_power_status_value_error(test_id, output_data, mock_response):
@@ -44,7 +44,7 @@ async def test_get_device_power_status_value_error(test_id, output_data, mock_re
 @pytest.mark.parametrize(
     "test_id, output_data",
     [
-        ("edge-empty-data", {"data": {}}),
+        ("edge-empty-data", {"data": {}, "status": 0}),
         ("error-malformed-data", {"wrong": "data"}),
     ],
 )

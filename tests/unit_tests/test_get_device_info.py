@@ -16,7 +16,7 @@ from APsystemsEZ1 import ReturnDeviceInfo
                     "ipAddr": "192.168.1.2",
                     "minPower": 100,
                     "maxPower": 1000,
-                }
+                }, "status": 0
             },
             ReturnDeviceInfo(
                 deviceId="12345",
@@ -38,7 +38,7 @@ from APsystemsEZ1 import ReturnDeviceInfo
                     "ipAddr": "",
                     "minPower": 0,
                     "maxPower": 0,
-                }
+                }, "status": 0
             },
             ReturnDeviceInfo(
                 deviceId="", devVer="", ssid="", ipAddr="", minPower=0, maxPower=0
@@ -66,7 +66,7 @@ async def test_get_device_info(response_data, expected_result, test_id, mock_res
     [
         # Error cases
         (
-            {"data": {}},
+            {"data": {}, "status": 0},
             "error_case_empty_data",
         ),
     ],

@@ -15,7 +15,7 @@ import pytest
                     "te2": 0.0,
                     "p1": 0.0,
                     "p2": 0.0,
-                }
+                }, "status": 0
             },
             8000.0,
             "happy_path_1",
@@ -29,7 +29,7 @@ import pytest
                     "te2": 0.0,
                     "p1": 0.0,
                     "p2": 0.0,
-                }
+                }, "status": 0
             },
             2023.57,
             "happy_path_2",
@@ -44,7 +44,7 @@ import pytest
                     "te2": 0.0,
                     "p1": 0.0,
                     "p2": 0.0,
-                }
+                }, "status": 0
             },
             3000.0,
             "edge_case_1",
@@ -58,7 +58,7 @@ import pytest
                     "te2": 0.0,
                     "p1": 0.0,
                     "p2": 0.0,
-                }
+                }, "status": 0
             },
             3000.0,
             "edge_case_2",

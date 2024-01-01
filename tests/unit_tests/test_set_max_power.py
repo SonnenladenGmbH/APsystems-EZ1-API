@@ -12,7 +12,7 @@ import pytest
 )
 async def test_set_max_power_happy_path(power_limit, expected, mock_response):
     # Arrange
-    ez1m = mock_response({"data": {"maxPower": power_limit}})
+    ez1m = mock_response({"data": {"maxPower": power_limit}, "status": 0})
 
     # Act
     result = await ez1m.set_max_power(power_limit)
@@ -53,7 +53,7 @@ async def test_set_max_power_error_cases(
     power_limit, expected_exception, expected_message, mock_response
 ):
     # Arrange
-    ez1m = mock_response({"data": {"maxPower": power_limit}})
+    ez1m = mock_response({"data": {"maxPower": power_limit}, "status": 0})
 
     # Act & Assert
     with pytest.raises(expected_exception) as exc_info:

@@ -16,7 +16,7 @@ from APsystemsEZ1 import ReturnOutputData
                     "p2": 200.0,
                     "e2": 75.0,
                     "te2": 750.0,
-                }
+                }, "status": 0
             },
             ReturnOutputData(
                 p1=100.0, e1=50.0, te1=500.0, p2=200.0, e2=75.0, te2=750.0
@@ -32,7 +32,7 @@ from APsystemsEZ1 import ReturnOutputData
                     "p2": 0.0,
                     "e2": 0.0,
                     "te2": 0.0,
-                }
+                }, "status": 0
             },
             ReturnOutputData(p1=0.0, e1=0.0, te1=0.0, p2=0.0, e2=0.0, te2=0.0),
             "happy_path_2",
@@ -47,7 +47,7 @@ from APsystemsEZ1 import ReturnOutputData
                     "p2": -1.0,
                     "e2": -1.0,
                     "te2": -1.0,
-                }
+                }, "status": 0
             },
             ReturnOutputData(p1=-1.0, e1=-1.0, te1=-1.0, p2=-1.0, e2=-1.0, te2=-1.0),
             "edge_case_negative_values",
@@ -72,7 +72,7 @@ async def test_get_output_data_happy_paths(
     "response_data, test_id",
     [
         # Error cases
-        ({"data": {}}, "error_case_empty_data"),
+        ({"data": {}, "status": 0}, "error_case_empty_data"),
     ],
 )
 async def test_get_output_data_error_empty_data(response_data, test_id, mock_response):

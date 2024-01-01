@@ -17,7 +17,7 @@ async def test_set_device_power_status_happy_paths(
     input_status, expected_status, test_id, mock_response
 ):
     # Arrange
-    ez1m = mock_response({"data": {"status": expected_status.value}})
+    ez1m = mock_response({"data": {"status": expected_status.value}, "status": 0})
 
     # Act
     result = await ez1m.set_device_power_status(input_status)
