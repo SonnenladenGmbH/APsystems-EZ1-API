@@ -4,3 +4,4 @@ __pycache__/
 .mypy_cache
 .coverage
 APsystemsEZ1/main.py
+dist

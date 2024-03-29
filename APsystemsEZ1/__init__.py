@@ -44,7 +44,7 @@ class APsystemsEZ1M:
     power status, alarm information, device information, and power limits.
     """
 
-    def __init__(self, ip_address: str, port: int = 8050, timeout: int = 10):
+    def __init__(self, ip_address: str, port: int = 8050, timeout: int = 10, session: ClientSession| None = None):
         """
         Initializes a new instance of the EZ1Microinverter class with the specified IP address
         and port.
@@ -55,6 +55,9 @@ class APsystemsEZ1M:
         """
         self.base_url = f"http://{ip_address}:{port}"
         self.timeout = timeout
+        if session is None:
+            session = ClientSession()
+        self.session = session
 
     async def _request(self, endpoint: str) -> dict | None:
         """
@@ -67,7 +70,7 @@ class APsystemsEZ1M:
         :raises: Prints an error message if the HTTP request fails for any reason.
         """
         url = f"{self.base_url}/{endpoint}"
-        async with ClientSession() as ses, ses.get(url, timeout=self.timeout) as resp:
+        async with self.session.get(url, timeout=self.timeout) as resp:
             if not resp.ok:
                 raise HttpBadRequest(f"HTTP Error: {resp.status}")
             return await resp.json()
@@ -97,7 +100,6 @@ class APsystemsEZ1M:
 
         """
         response = await self._request("getDeviceInfo")
-        print(response)
         return (
             ReturnDeviceInfo(
                 deviceId=response["data"]["deviceId"],
