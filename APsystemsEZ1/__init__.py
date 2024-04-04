@@ -9,6 +9,9 @@ class Status(IntEnum):
     normal = 0
     alarm = 1
 
+class InverterReturnedError(Exception):
+    pass
+
 
 @dataclass
 class ReturnDeviceInfo:
@@ -71,9 +74,13 @@ class APsystemsEZ1M:
         """
         url = f"{self.base_url}/{endpoint}"
         async with self.session.get(url, timeout=self.timeout) as resp:
-            if not resp.ok:
+            if resp.status != 200:
                 raise HttpBadRequest(f"HTTP Error: {resp.status}")
-            return await resp.json()
+            data = await resp.json()
+            if data["message"] == "SUCCESS":
+                return data
+            raise InverterReturnedError
+            
 
     async def get_device_info(self) -> ReturnDeviceInfo | None:
         """
