@@ -9,6 +9,7 @@ class Status(IntEnum):
     normal = 0
     alarm = 1
 
+
 class InverterReturnedError(Exception):
     pass
 
@@ -47,7 +48,7 @@ class APsystemsEZ1M:
     power status, alarm information, device information, and power limits.
     """
 
-    def __init__(self, ip_address: str, port: int = 8050, timeout: int = 10, session: ClientSession| None = None):
+    def __init__(self, ip_address: str, port: int = 8050, timeout: int = 10, session: ClientSession | None = None):
         """
         Initializes a new instance of the EZ1Microinverter class with the specified IP address
         and port.
@@ -58,11 +59,9 @@ class APsystemsEZ1M:
         """
         self.base_url = f"http://{ip_address}:{port}"
         self.timeout = timeout
-        if session is None:
-            session = ClientSession()
         self.session = session
 
-    async def _request(self, endpoint: str) -> dict | None:
+    async def _request(self, endpoint: str, retry: bool | None = True) -> dict | None:
         """
         A private method to send HTTP requests to the specified endpoint of the microinverter.
         This method is used internally by other class methods to perform GET or POST requests.
@@ -73,14 +72,25 @@ class APsystemsEZ1M:
         :raises: Prints an error message if the HTTP request fails for any reason.
         """
         url = f"{self.base_url}/{endpoint}"
-        async with self.session.get(url, timeout=self.timeout) as resp:
+        if self.session is None:
+            ses = ClientSession()
+        else:
+            ses = self.session
+        async with ses.get(url, timeout=self.timeout) as resp:
             if resp.status != 200:
                 raise HttpBadRequest(f"HTTP Error: {resp.status}")
             data = await resp.json()
             if data["message"] == "SUCCESS":
+                # Close if session created on per-execution base
+                if self.session is None:
+                    await ses.close()
                 return data
+            # Close if session created on per-execution base
+            if self.session is None:
+                await ses.close()
+            if retry:  # Re-run request when the inverter returned failed because of unknown reason
+                return await self._request(endpoint, retry=False)
             raise InverterReturnedError
-            
 
     async def get_device_info(self) -> ReturnDeviceInfo | None:
         """
@@ -260,7 +270,7 @@ class APsystemsEZ1M:
         return Status(int(response["data"]["status"])) if response else None
 
     async def set_device_power_status(
-        self, power_status: Status | None
+            self, power_status: Status | None
     ) -> Status | None:
         """
         Sets the power status of the device to either on or off. This method sends a request to the
