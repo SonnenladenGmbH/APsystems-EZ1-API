@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "apsystems-ez1"
-version = "1.3.0"
+version = "1.3.1"
 description = "The APsystems EZ1 Python library offers a streamlined interface for interacting with the local API of APsystems EZ1 Microinverters."
 authors = ["Sonnenladen GmbH <l.tiedt@sonnenladen.de>"]
 readme = "README.md"
