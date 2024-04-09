@@ -77,17 +77,16 @@ class APsystemsEZ1M:
         else:
             ses = self.session
         async with ses.get(url, timeout=self.timeout) as resp:
-            if resp.status != 200:
-                raise HttpBadRequest(f"HTTP Error: {resp.status}")
             data = await resp.json()
-            if data["message"] == "SUCCESS":
-                # Close if session created on per-execution base
-                if self.session is None:
-                    await ses.close()
-                return data
             # Close if session created on per-execution base
             if self.session is None:
                 await ses.close()
+            
+            # Handle reponse
+            if resp.status != 200:
+                raise HttpBadRequest(f"HTTP Error: {resp.status}")
+            if data["message"] == "SUCCESS":
+                return data
             if retry:  # Re-run request when the inverter returned failed because of unknown reason
                 return await self._request(endpoint, retry=False)
             raise InverterReturnedError
