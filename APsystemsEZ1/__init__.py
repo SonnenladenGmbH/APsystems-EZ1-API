@@ -48,7 +48,13 @@ class APsystemsEZ1M:
     power status, alarm information, device information, and power limits.
     """
 
-    def __init__(self, ip_address: str, port: int = 8050, timeout: int = 10, session: ClientSession | None = None):
+    def __init__(
+        self,
+        ip_address: str,
+        port: int = 8050,
+        timeout: int = 10,
+        session: ClientSession | None = None,
+    ):
         """
         Initializes a new instance of the EZ1Microinverter class with the specified IP address
         and port.
@@ -76,20 +82,25 @@ class APsystemsEZ1M:
             ses = ClientSession()
         else:
             ses = self.session
-        async with ses.get(url, timeout=self.timeout) as resp:
-            data = await resp.json()
+        try:
+            async with ses.get(url, timeout=self.timeout) as resp:
+                data = await resp.json()
+
+                # Handle reponse
+                if resp.status != 200:
+                    raise HttpBadRequest(f"HTTP Error: {resp.status}")
+                if data["message"] == "SUCCESS":
+                    return data
+                if (
+                    retry
+                ):  # Re-run request when the inverter returned failed because of unknown reason
+                    return await self._request(endpoint, retry=False)
+                raise InverterReturnedError
+        finally:
             # Close if session created on per-execution base
+
             if self.session is None:
                 await ses.close()
-            
-            # Handle reponse
-            if resp.status != 200:
-                raise HttpBadRequest(f"HTTP Error: {resp.status}")
-            if data["message"] == "SUCCESS":
-                return data
-            if retry:  # Re-run request when the inverter returned failed because of unknown reason
-                return await self._request(endpoint, retry=False)
-            raise InverterReturnedError
 
     async def get_device_info(self) -> ReturnDeviceInfo | None:
         """
@@ -269,7 +280,7 @@ class APsystemsEZ1M:
         return Status(int(response["data"]["status"])) if response else None
 
     async def set_device_power_status(
-            self, power_status: Status | None
+        self, power_status: Status | None
     ) -> Status | None:
         """
         Sets the power status of the device to either on or off. This method sends a request to the
