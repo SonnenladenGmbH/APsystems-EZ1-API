@@ -1,0 +1,2439 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
+    
+    
+      
+        <title>Reference - APsystems EZ1 - Python Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bcfcd587.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="APsystems EZ1 - Python Library" class="md-header__button md-logo" aria-label="APsystems EZ1 - Python Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            APsystems EZ1 - Python Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="APsystems EZ1 - Python Library" class="md-nav__button md-logo" aria-label="APsystems EZ1 - Python Library" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    APsystems EZ1 - Python Library
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Api
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Api
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#APsystemsEZ1" class="md-nav__link">
+    <span class="md-ellipsis">
+      APsystemsEZ1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M" class="md-nav__link">
+    <span class="md-ellipsis">
+      APsystemsEZ1M
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="APsystemsEZ1M">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.get_alarm_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_alarm_info
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.get_device_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_device_info
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.get_device_power_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_device_power_status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.get_max_power" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_max_power
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.get_output_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_output_data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.get_total_energy_lifetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_total_energy_lifetime
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.get_total_energy_today" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_total_energy_today
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.get_total_output" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_total_output
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.set_device_power_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_device_power_status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.set_max_power" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_max_power
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#APsystemsEZ1" class="md-nav__link">
+    <span class="md-ellipsis">
+      APsystemsEZ1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M" class="md-nav__link">
+    <span class="md-ellipsis">
+      APsystemsEZ1M
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="APsystemsEZ1M">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.get_alarm_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_alarm_info
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.get_device_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_device_info
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.get_device_power_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_device_power_status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.get_max_power" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_max_power
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.get_output_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_output_data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.get_total_energy_lifetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_total_energy_lifetime
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.get_total_energy_today" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_total_energy_today
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.get_total_output" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_total_output
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.set_device_power_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_device_power_status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#APsystemsEZ1.APsystemsEZ1M.set_max_power" class="md-nav__link">
+    <span class="md-ellipsis">
+      set_max_power
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="reference">Reference</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="APsystemsEZ1"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="APsystemsEZ1.APsystemsEZ1M" class="doc doc-heading">
+          <code>APsystemsEZ1M</code>
+
+
+</h2>
+
+
+  <div class="doc doc-contents ">
+
+  
+      <p>This class represents an EZ1 Microinverter and provides methods to interact with it
+over a network. The class allows for getting and setting various device parameters like
+power status, alarm information, device information, and power limits.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>APsystemsEZ1/__init__.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">APsystemsEZ1M</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This class represents an EZ1 Microinverter and provides methods to interact with it</span>
+<span class="sd">    over a network. The class allows for getting and setting various device parameters like</span>
+<span class="sd">    power status, alarm information, device information, and power limits.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ip_address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8050</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="n">session</span><span class="p">:</span> <span class="n">ClientSession</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes a new instance of the EZ1Microinverter class with the specified IP address</span>
+<span class="sd">        and port.</span>
+
+<span class="sd">        :param ip_address: The IP address of the EZ1 Microinverter.</span>
+<span class="sd">        :param port: The port on which the microinverter&#39;s server is running. Default is 8050.</span>
+<span class="sd">        :param timeout: The timeout for all requests. The default of 10 seconds should be plenty.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;http://</span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">session</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">retry</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A private method to send HTTP requests to the specified endpoint of the microinverter.</span>
+<span class="sd">        This method is used internally by other class methods to perform GET or POST requests.</span>
+
+<span class="sd">        :param endpoint: The API endpoint to make the request to.</span>
+
+<span class="sd">        :return: The JSON response from the microinverter as a dictionary.</span>
+<span class="sd">        :raises: Prints an error message if the HTTP request fails for any reason.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">endpoint</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ses</span> <span class="o">=</span> <span class="n">ClientSession</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">async</span> <span class="k">with</span> <span class="n">ses</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span> <span class="k">as</span> <span class="n">resp</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+                <span class="c1"># Handle reponse</span>
+                <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">HttpBadRequest</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;HTTP Error: </span><span class="si">{</span><span class="n">resp</span><span class="o">.</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;SUCCESS&quot;</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">data</span>
+                <span class="k">if</span> <span class="p">(</span>
+                    <span class="n">retry</span>
+                <span class="p">):</span>  <span class="c1"># Re-run request when the inverter returned failed because of unknown reason</span>
+                    <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">retry</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">InverterReturnedError</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="c1"># Close if session created on per-execution base</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">await</span> <span class="n">ses</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_device_info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ReturnDeviceInfo</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves detailed information about the device. This method sends a request to the</span>
+<span class="sd">        &quot;getDeviceInfo&quot; endpoint and returns a dictionary containing various details about the device.</span>
+
+<span class="sd">        The returned data includes the device ID, device version, the SSID it is connected to, its IP</span>
+<span class="sd">        address, and its minimum and maximum power settings. This information can be used for monitoring</span>
+<span class="sd">        and configuring the device.</span>
+
+<span class="sd">        The response contains the following attributes:</span>
+
+<span class="sd">        - __deviceId__ (`str`): The unique identifier for the device.</span>
+<span class="sd">        - __devVer__ (`str`): The version of the device firmware or software.</span>
+<span class="sd">        - __ssid__ (`str`): The SSID of the network to which the device is currently connected.</span>
+<span class="sd">        - __ipAddr__ (`str`): The current IP address of the device.</span>
+<span class="sd">        - __minPower__ (`int`): The minimum power output that the device can be set to, measured in watts.</span>
+<span class="sd">        - __maxPower__ (`int`): The maximum power output that the device can be set to, also in watts.</span>
+
+
+
+<span class="sd">        :return: Different information about the inverter</span>
+<span class="sd">        :rtype: ReturnDeviceInfo</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;getDeviceInfo&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">ReturnDeviceInfo</span><span class="p">(</span>
+                <span class="n">deviceId</span><span class="o">=</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;deviceId&quot;</span><span class="p">],</span>
+                <span class="n">devVer</span><span class="o">=</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;devVer&quot;</span><span class="p">],</span>
+                <span class="n">ssid</span><span class="o">=</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;ssid&quot;</span><span class="p">],</span>
+                <span class="n">ipAddr</span><span class="o">=</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;ipAddr&quot;</span><span class="p">],</span>
+                <span class="n">minPower</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;minPower&quot;</span><span class="p">]),</span>
+                <span class="n">maxPower</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;maxPower&quot;</span><span class="p">]),</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">response</span> <span class="ow">and</span> <span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+            <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_alarm_info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ReturnAlarmInfo</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves the alarm status information for various components of the device. This method</span>
+<span class="sd">        makes a request to the &quot;getAlarm&quot; endpoint and returns a dictionary containing the alarm</span>
+<span class="sd">        status for different parameters.</span>
+
+<span class="sd">        The &#39;data&#39; field in the returned dictionary includes the status of several components,</span>
+<span class="sd">        each represented as a string indicating whether there is an alarm (&#39;1&#39;) or normal operation (&#39;0&#39;).</span>
+
+<span class="sd">        The response contains the following attributes:</span>
+<span class="sd">        - __og__ (`Status`): Off-Grid Status (normal/0 when okay)</span>
+<span class="sd">        _ __isce1__ (`Status`): DC 1 Short Circuit Error status (normal/0 when okay)</span>
+<span class="sd">        _ __isce2__ (`Status`): DC 2 Short Circuit Error status (normal/0 when okay)</span>
+<span class="sd">        - __oe__ (`Status`): Output fault status (normal/0 when okay)</span>
+
+<span class="sd">        :return: Information about possible point of failures</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;getAlarm&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="n">ReturnAlarmInfo</span><span class="p">(</span>
+                <span class="n">og</span><span class="o">=</span><span class="n">Status</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;og&quot;</span><span class="p">])),</span>
+                <span class="n">isce1</span><span class="o">=</span><span class="n">Status</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;isce1&quot;</span><span class="p">])),</span>
+                <span class="n">isce2</span><span class="o">=</span><span class="n">Status</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;isce2&quot;</span><span class="p">])),</span>
+                <span class="n">oe</span><span class="o">=</span><span class="n">Status</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;oe&quot;</span><span class="p">])),</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">response</span>
+            <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_output_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ReturnOutputData</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves the output data from the device. This method calls a private method `_request`</span>
+<span class="sd">        with the endpoint &quot;getOutputData&quot; to fetch the device&#39;s output data.</span>
+
+<span class="sd">        The returned data includes various parameters such as power output status (&#39;p1&#39;, &#39;p2&#39;),</span>
+<span class="sd">        energy readings (&#39;e1&#39;, &#39;e2&#39;), and total energy (&#39;te1&#39;, &#39;te2&#39;) for two different inputs</span>
+<span class="sd">        of the inverter. Additionally, it provides a status message and the device ID.</span>
+
+<span class="sd">        The response contains the following attributes:</span>
+<span class="sd">        - __p1__ (`float`): Power output status of inverter input 1</span>
+<span class="sd">        - __e1__ (`float`): Energy reading for inverter input 1</span>
+<span class="sd">        - __te1__ (`float`): Total energy for inverter input 1</span>
+<span class="sd">        - __p2__ (`float`): Power output status of inverter input 2</span>
+<span class="sd">        - __e2__ (`float`): Energy reading for inverter input 2</span>
+<span class="sd">        - __te2__ (`float`): Total energy for inverter input 2</span>
+
+<span class="sd">        :return: Information about energy/power-related information</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;getOutputData&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ReturnOutputData</span><span class="p">(</span><span class="o">**</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">response</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_total_output</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves and calculates the combined power output status of inverter inputs 1 and 2.</span>
+<span class="sd">        This method first calls get_output_data() to fetch the output data from the device, which</span>
+<span class="sd">        includes individual power output values for &#39;p1&#39; and &#39;p2&#39;. It then sums these values to</span>
+<span class="sd">        provide the total combined power output.</span>
+
+<span class="sd">        :return: The sum of power output values &#39;p1&#39; and &#39;p2&#39; as a float.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_output_data</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">p1</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">p2</span><span class="p">)</span> <span class="k">if</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_total_energy_today</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves and calculates the total energy generated today by both inverter inputs, 1 and 2.</span>
+<span class="sd">        This method first calls get_output_data() to fetch the output data from the device, which</span>
+<span class="sd">        includes individual energy readings for &#39;e1&#39; and &#39;e2&#39;, each representing the energy in</span>
+<span class="sd">        kilowatt-hours (kWh) generated by the respective inverter inputs.</span>
+
+<span class="sd">        :return: The sum of the energy readings &#39;e1&#39; and &#39;e2&#39; as a float, representing the total energy</span>
+<span class="sd">                 generated today in kWh by both inverter inputs.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_output_data</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">e1</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">e2</span><span class="p">)</span> <span class="k">if</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_total_energy_lifetime</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves and calculates the total lifetime energy generated by both inverter inputs 1 and 2.</span>
+<span class="sd">        This method first calls get_output_data() to fetch the output data from the device, which</span>
+<span class="sd">        includes individual lifetime energy readings for &#39;te1&#39; and &#39;te2&#39;. Each of these values</span>
+<span class="sd">        represents the total lifetime energy generated by the respective inverter inputs, reported</span>
+<span class="sd">        in kilowatt-hours (kWh).</span>
+
+<span class="sd">        :return: The sum of the lifetime energy readings &#39;te1&#39; and &#39;te2&#39; as a float, representing the</span>
+<span class="sd">                 total lifetime energy in kWh generated by both inverter inputs.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_output_data</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">te1</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">te2</span><span class="p">)</span> <span class="k">if</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_max_power</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Retrieves the set maximum power setting of the device. This method makes a request to the</span>
+<span class="sd">        &quot;getMaxPower&quot; endpoint and returns a dictionary containing the maximum power limit of the device set by the user.</span>
+
+<span class="sd">        :return: Max output power in watts</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;getMaxPower&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;maxPower&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;maxPower&quot;</span><span class="p">])</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">set_max_power</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">power_limit</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the maximum power limit of the device. This method sends a request to the &quot;setMaxPower&quot;</span>
+<span class="sd">        endpoint with the specified power limit as a parameter. The power limit must be an integer</span>
+<span class="sd">        within the range of 30 to 800 watts.</span>
+
+<span class="sd">        If the provided power limit is outside this range, the method raises a ValueError.</span>
+
+<span class="sd">        :param power_limit: The desired maximum power setting for the device, in watts.</span>
+<span class="sd">                            Must be an integer between 30 and 800.</span>
+
+<span class="sd">        :return: (Newly) set max output power in watts</span>
+<span class="sd">        :raises ValueError: If &#39;power_limit&#39; is not within the range of 30 to 800.</span>
+
+<span class="sd">        The key in the &#39;data&#39; object is:</span>
+<span class="sd">        - &#39;maxPower&#39;: Indicates the newly set maximum power output of the device in watts.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="mi">30</span> <span class="o">&lt;=</span> <span class="n">power_limit</span> <span class="o">&lt;=</span> <span class="mi">800</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Invalid setMaxPower value: expected int between &#39;30&#39; and &#39;800&#39;, got &#39;</span><span class="si">{</span><span class="n">power_limit</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+            <span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;setMaxPower?p=</span><span class="si">{</span><span class="n">power_limit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;maxPower&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">request</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_device_power_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves the current power status of the device. This method sends a request to the</span>
+<span class="sd">        &quot;getOnOff&quot; endpoint and returns a dictionary containing the power status of the device.</span>
+
+<span class="sd">        The &#39;data&#39; field in the returned dictionary includes the &#39;status&#39; key, representing the</span>
+<span class="sd">        current power status of the device, where &#39;0&#39; indicates that the device is on, and &#39;1&#39;</span>
+<span class="sd">        indicates that it is off.</span>
+
+<span class="sd">        :return: 0/normal when on, 1/alarm when off</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;getOnOff&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;status&quot;</span><span class="p">]))</span> <span class="k">if</span> <span class="n">response</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">set_device_power_status</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">power_status</span><span class="p">:</span> <span class="n">Status</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets the power status of the device to either on or off. This method sends a request to the</span>
+<span class="sd">        &quot;setOnOff&quot; endpoint with a specified power status parameter. The power status accepts multiple</span>
+<span class="sd">        string representations: &#39;0&#39; or &#39;ON&#39; to start the inverter, and &#39;1&#39;, &#39;SLEEP&#39;, or &#39;OFF&#39; to stop</span>
+<span class="sd">        the inverter.</span>
+
+<span class="sd">        If the provided power status does not match any of the accepted representations, the method</span>
+<span class="sd">        raises a ValueError with a descriptive message.</span>
+
+<span class="sd">        :param power_status: The desired power status for the device, specified as &#39;0&#39;, &#39;ON&#39; for</span>
+<span class="sd">                             starting the inverter, or &#39;1&#39;, &#39;SLEEP&#39;, &#39;OFF&#39; for stopping it.</span>
+<span class="sd">        :return: 0/normal when on, 1/alarm when off</span>
+<span class="sd">        :raises ValueError: If &#39;power_status&#39; does not match the accepted values. The error message</span>
+<span class="sd">                            explains the valid values and their meanings.</span>
+
+<span class="sd">        Note: Internally, the method treats &#39;0&#39; and &#39;ON&#39; as equivalent, both setting the power status</span>
+<span class="sd">        to &#39;0&#39;. Similarly, &#39;1&#39;, &#39;SLEEP&#39;, and &#39;OFF&#39; are treated as equivalent, setting the power status</span>
+<span class="sd">        to &#39;1&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">status_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;0&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;ON&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;SLEEP&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;OFF&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">}</span>
+        <span class="n">status_value</span> <span class="o">=</span> <span class="n">status_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">power_status</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">status_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Invalid power status: expected &#39;0&#39;, &#39;ON&#39; or &#39;1&#39;,&#39;SLEEP&#39; or &#39;OFF&#39;, got &#39;</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">power_status</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="o">+</span> <span class="s2">&quot;&#39;</span><span class="se">\n</span><span class="s2"> Set &#39;0&#39; or &#39;ON&#39; to start the inverter | Set &#39;1&#39; or &#39;SLEEP&#39; or &#39;OFF&#39; to stop the inverter.&quot;</span>
+            <span class="p">)</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;setOnOff?status=</span><span class="si">{</span><span class="n">status_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;status&quot;</span><span class="p">]))</span> <span class="k">if</span> <span class="n">request</span> <span class="k">else</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="APsystemsEZ1.APsystemsEZ1M.__init__" class="doc doc-heading">
+          <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">ip_address</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8050</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Initializes a new instance of the EZ1Microinverter class with the specified IP address
+and port.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>ip_address</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The IP address of the EZ1 Microinverter.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>port</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The port on which the microinverter's server is running. Default is 8050.</p>
+            </div>
+          </td>
+          <td>
+                <code>8050</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>timeout</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The timeout for all requests. The default of 10 seconds should be plenty.</p>
+            </div>
+          </td>
+          <td>
+                <code>10</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>APsystemsEZ1/__init__.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">ip_address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">port</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8050</span><span class="p">,</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="n">session</span><span class="p">:</span> <span class="n">ClientSession</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Initializes a new instance of the EZ1Microinverter class with the specified IP address</span>
+<span class="sd">    and port.</span>
+
+<span class="sd">    :param ip_address: The IP address of the EZ1 Microinverter.</span>
+<span class="sd">    :param port: The port on which the microinverter&#39;s server is running. Default is 8050.</span>
+<span class="sd">    :param timeout: The timeout for all requests. The default of 10 seconds should be plenty.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;http://</span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">session</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="APsystemsEZ1.APsystemsEZ1M.get_alarm_info" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_alarm_info</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Retrieves the alarm status information for various components of the device. This method
+makes a request to the "getAlarm" endpoint and returns a dictionary containing the alarm
+status for different parameters.</p>
+<p>The 'data' field in the returned dictionary includes the status of several components,
+each represented as a string indicating whether there is an alarm ('1') or normal operation ('0').</p>
+<p>The response contains the following attributes:
+- <strong>og</strong> (<code>Status</code>): Off-Grid Status (normal/0 when okay)
+_ <strong>isce1</strong> (<code>Status</code>): DC 1 Short Circuit Error status (normal/0 when okay)
+_ <strong>isce2</strong> (<code>Status</code>): DC 2 Short Circuit Error status (normal/0 when okay)
+- <strong>oe</strong> (<code>Status</code>): Output fault status (normal/0 when okay)</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="APsystemsEZ1.ReturnAlarmInfo">ReturnAlarmInfo</span> | None</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Information about possible point of failures</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>APsystemsEZ1/__init__.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_alarm_info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ReturnAlarmInfo</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieves the alarm status information for various components of the device. This method</span>
+<span class="sd">    makes a request to the &quot;getAlarm&quot; endpoint and returns a dictionary containing the alarm</span>
+<span class="sd">    status for different parameters.</span>
+
+<span class="sd">    The &#39;data&#39; field in the returned dictionary includes the status of several components,</span>
+<span class="sd">    each represented as a string indicating whether there is an alarm (&#39;1&#39;) or normal operation (&#39;0&#39;).</span>
+
+<span class="sd">    The response contains the following attributes:</span>
+<span class="sd">    - __og__ (`Status`): Off-Grid Status (normal/0 when okay)</span>
+<span class="sd">    _ __isce1__ (`Status`): DC 1 Short Circuit Error status (normal/0 when okay)</span>
+<span class="sd">    _ __isce2__ (`Status`): DC 2 Short Circuit Error status (normal/0 when okay)</span>
+<span class="sd">    - __oe__ (`Status`): Output fault status (normal/0 when okay)</span>
+
+<span class="sd">    :return: Information about possible point of failures</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;getAlarm&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">ReturnAlarmInfo</span><span class="p">(</span>
+            <span class="n">og</span><span class="o">=</span><span class="n">Status</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;og&quot;</span><span class="p">])),</span>
+            <span class="n">isce1</span><span class="o">=</span><span class="n">Status</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;isce1&quot;</span><span class="p">])),</span>
+            <span class="n">isce2</span><span class="o">=</span><span class="n">Status</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;isce2&quot;</span><span class="p">])),</span>
+            <span class="n">oe</span><span class="o">=</span><span class="n">Status</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;oe&quot;</span><span class="p">])),</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span>
+        <span class="k">else</span> <span class="kc">None</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="APsystemsEZ1.APsystemsEZ1M.get_device_info" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_device_info</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Retrieves detailed information about the device. This method sends a request to the
+"getDeviceInfo" endpoint and returns a dictionary containing various details about the device.</p>
+<p>The returned data includes the device ID, device version, the SSID it is connected to, its IP
+address, and its minimum and maximum power settings. This information can be used for monitoring
+and configuring the device.</p>
+<p>The response contains the following attributes:</p>
+<ul>
+<li><strong>deviceId</strong> (<code>str</code>): The unique identifier for the device.</li>
+<li><strong>devVer</strong> (<code>str</code>): The version of the device firmware or software.</li>
+<li><strong>ssid</strong> (<code>str</code>): The SSID of the network to which the device is currently connected.</li>
+<li><strong>ipAddr</strong> (<code>str</code>): The current IP address of the device.</li>
+<li><strong>minPower</strong> (<code>int</code>): The minimum power output that the device can be set to, measured in watts.</li>
+<li><strong>maxPower</strong> (<code>int</code>): The maximum power output that the device can be set to, also in watts.</li>
+</ul>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ReturnDeviceInfo</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Different information about the inverter</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>APsystemsEZ1/__init__.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_device_info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ReturnDeviceInfo</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieves detailed information about the device. This method sends a request to the</span>
+<span class="sd">    &quot;getDeviceInfo&quot; endpoint and returns a dictionary containing various details about the device.</span>
+
+<span class="sd">    The returned data includes the device ID, device version, the SSID it is connected to, its IP</span>
+<span class="sd">    address, and its minimum and maximum power settings. This information can be used for monitoring</span>
+<span class="sd">    and configuring the device.</span>
+
+<span class="sd">    The response contains the following attributes:</span>
+
+<span class="sd">    - __deviceId__ (`str`): The unique identifier for the device.</span>
+<span class="sd">    - __devVer__ (`str`): The version of the device firmware or software.</span>
+<span class="sd">    - __ssid__ (`str`): The SSID of the network to which the device is currently connected.</span>
+<span class="sd">    - __ipAddr__ (`str`): The current IP address of the device.</span>
+<span class="sd">    - __minPower__ (`int`): The minimum power output that the device can be set to, measured in watts.</span>
+<span class="sd">    - __maxPower__ (`int`): The maximum power output that the device can be set to, also in watts.</span>
+
+
+
+<span class="sd">    :return: Different information about the inverter</span>
+<span class="sd">    :rtype: ReturnDeviceInfo</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;getDeviceInfo&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">ReturnDeviceInfo</span><span class="p">(</span>
+            <span class="n">deviceId</span><span class="o">=</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;deviceId&quot;</span><span class="p">],</span>
+            <span class="n">devVer</span><span class="o">=</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;devVer&quot;</span><span class="p">],</span>
+            <span class="n">ssid</span><span class="o">=</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;ssid&quot;</span><span class="p">],</span>
+            <span class="n">ipAddr</span><span class="o">=</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;ipAddr&quot;</span><span class="p">],</span>
+            <span class="n">minPower</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;minPower&quot;</span><span class="p">]),</span>
+            <span class="n">maxPower</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;maxPower&quot;</span><span class="p">]),</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">response</span> <span class="ow">and</span> <span class="n">response</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+        <span class="k">else</span> <span class="kc">None</span>
+    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="APsystemsEZ1.APsystemsEZ1M.get_device_power_status" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_device_power_status</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Retrieves the current power status of the device. This method sends a request to the
+"getOnOff" endpoint and returns a dictionary containing the power status of the device.</p>
+<p>The 'data' field in the returned dictionary includes the 'status' key, representing the
+current power status of the device, where '0' indicates that the device is on, and '1'
+indicates that it is off.</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="APsystemsEZ1.Status">Status</span> | None</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>0/normal when on, 1/alarm when off</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>APsystemsEZ1/__init__.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_device_power_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieves the current power status of the device. This method sends a request to the</span>
+<span class="sd">    &quot;getOnOff&quot; endpoint and returns a dictionary containing the power status of the device.</span>
+
+<span class="sd">    The &#39;data&#39; field in the returned dictionary includes the &#39;status&#39; key, representing the</span>
+<span class="sd">    current power status of the device, where &#39;0&#39; indicates that the device is on, and &#39;1&#39;</span>
+<span class="sd">    indicates that it is off.</span>
+
+<span class="sd">    :return: 0/normal when on, 1/alarm when off</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;getOnOff&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;status&quot;</span><span class="p">]))</span> <span class="k">if</span> <span class="n">response</span> <span class="k">else</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="APsystemsEZ1.APsystemsEZ1M.get_max_power" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_max_power</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Retrieves the set maximum power setting of the device. This method makes a request to the
+"getMaxPower" endpoint and returns a dictionary containing the maximum power limit of the device set by the user.</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>int | None</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Max output power in watts</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>APsystemsEZ1/__init__.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_max_power</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Retrieves the set maximum power setting of the device. This method makes a request to the</span>
+<span class="sd">    &quot;getMaxPower&quot; endpoint and returns a dictionary containing the maximum power limit of the device set by the user.</span>
+
+<span class="sd">    :return: Max output power in watts</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;getMaxPower&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">response</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;maxPower&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;maxPower&quot;</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="APsystemsEZ1.APsystemsEZ1M.get_output_data" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_output_data</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Retrieves the output data from the device. This method calls a private method <code>_request</code>
+with the endpoint "getOutputData" to fetch the device's output data.</p>
+<p>The returned data includes various parameters such as power output status ('p1', 'p2'),
+energy readings ('e1', 'e2'), and total energy ('te1', 'te2') for two different inputs
+of the inverter. Additionally, it provides a status message and the device ID.</p>
+<p>The response contains the following attributes:
+- <strong>p1</strong> (<code>float</code>): Power output status of inverter input 1
+- <strong>e1</strong> (<code>float</code>): Energy reading for inverter input 1
+- <strong>te1</strong> (<code>float</code>): Total energy for inverter input 1
+- <strong>p2</strong> (<code>float</code>): Power output status of inverter input 2
+- <strong>e2</strong> (<code>float</code>): Energy reading for inverter input 2
+- <strong>te2</strong> (<code>float</code>): Total energy for inverter input 2</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="APsystemsEZ1.ReturnOutputData">ReturnOutputData</span> | None</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Information about energy/power-related information</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>APsystemsEZ1/__init__.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_output_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ReturnOutputData</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieves the output data from the device. This method calls a private method `_request`</span>
+<span class="sd">    with the endpoint &quot;getOutputData&quot; to fetch the device&#39;s output data.</span>
+
+<span class="sd">    The returned data includes various parameters such as power output status (&#39;p1&#39;, &#39;p2&#39;),</span>
+<span class="sd">    energy readings (&#39;e1&#39;, &#39;e2&#39;), and total energy (&#39;te1&#39;, &#39;te2&#39;) for two different inputs</span>
+<span class="sd">    of the inverter. Additionally, it provides a status message and the device ID.</span>
+
+<span class="sd">    The response contains the following attributes:</span>
+<span class="sd">    - __p1__ (`float`): Power output status of inverter input 1</span>
+<span class="sd">    - __e1__ (`float`): Energy reading for inverter input 1</span>
+<span class="sd">    - __te1__ (`float`): Total energy for inverter input 1</span>
+<span class="sd">    - __p2__ (`float`): Power output status of inverter input 2</span>
+<span class="sd">    - __e2__ (`float`): Energy reading for inverter input 2</span>
+<span class="sd">    - __te2__ (`float`): Total energy for inverter input 2</span>
+
+<span class="sd">    :return: Information about energy/power-related information</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="s2">&quot;getOutputData&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ReturnOutputData</span><span class="p">(</span><span class="o">**</span><span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">response</span> <span class="k">else</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="APsystemsEZ1.APsystemsEZ1M.get_total_energy_lifetime" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_total_energy_lifetime</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Retrieves and calculates the total lifetime energy generated by both inverter inputs 1 and 2.
+This method first calls get_output_data() to fetch the output data from the device, which
+includes individual lifetime energy readings for 'te1' and 'te2'. Each of these values
+represents the total lifetime energy generated by the respective inverter inputs, reported
+in kilowatt-hours (kWh).</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>float | None</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The sum of the lifetime energy readings 'te1' and 'te2' as a float, representing the total lifetime energy in kWh generated by both inverter inputs.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>APsystemsEZ1/__init__.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_total_energy_lifetime</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieves and calculates the total lifetime energy generated by both inverter inputs 1 and 2.</span>
+<span class="sd">    This method first calls get_output_data() to fetch the output data from the device, which</span>
+<span class="sd">    includes individual lifetime energy readings for &#39;te1&#39; and &#39;te2&#39;. Each of these values</span>
+<span class="sd">    represents the total lifetime energy generated by the respective inverter inputs, reported</span>
+<span class="sd">    in kilowatt-hours (kWh).</span>
+
+<span class="sd">    :return: The sum of the lifetime energy readings &#39;te1&#39; and &#39;te2&#39; as a float, representing the</span>
+<span class="sd">             total lifetime energy in kWh generated by both inverter inputs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_output_data</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">te1</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">te2</span><span class="p">)</span> <span class="k">if</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="APsystemsEZ1.APsystemsEZ1M.get_total_energy_today" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_total_energy_today</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Retrieves and calculates the total energy generated today by both inverter inputs, 1 and 2.
+This method first calls get_output_data() to fetch the output data from the device, which
+includes individual energy readings for 'e1' and 'e2', each representing the energy in
+kilowatt-hours (kWh) generated by the respective inverter inputs.</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>float | None</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The sum of the energy readings 'e1' and 'e2' as a float, representing the total energy generated today in kWh by both inverter inputs.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>APsystemsEZ1/__init__.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_total_energy_today</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieves and calculates the total energy generated today by both inverter inputs, 1 and 2.</span>
+<span class="sd">    This method first calls get_output_data() to fetch the output data from the device, which</span>
+<span class="sd">    includes individual energy readings for &#39;e1&#39; and &#39;e2&#39;, each representing the energy in</span>
+<span class="sd">    kilowatt-hours (kWh) generated by the respective inverter inputs.</span>
+
+<span class="sd">    :return: The sum of the energy readings &#39;e1&#39; and &#39;e2&#39; as a float, representing the total energy</span>
+<span class="sd">             generated today in kWh by both inverter inputs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_output_data</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">e1</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">e2</span><span class="p">)</span> <span class="k">if</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="APsystemsEZ1.APsystemsEZ1M.get_total_output" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">get_total_output</span><span class="p">()</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Retrieves and calculates the combined power output status of inverter inputs 1 and 2.
+This method first calls get_output_data() to fetch the output data from the device, which
+includes individual power output values for 'p1' and 'p2'. It then sums these values to
+provide the total combined power output.</p>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>float | None</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The sum of power output values 'p1' and 'p2' as a float.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>APsystemsEZ1/__init__.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_total_output</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieves and calculates the combined power output status of inverter inputs 1 and 2.</span>
+<span class="sd">    This method first calls get_output_data() to fetch the output data from the device, which</span>
+<span class="sd">    includes individual power output values for &#39;p1&#39; and &#39;p2&#39;. It then sums these values to</span>
+<span class="sd">    provide the total combined power output.</span>
+
+<span class="sd">    :return: The sum of power output values &#39;p1&#39; and &#39;p2&#39; as a float.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_output_data</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">p1</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">p2</span><span class="p">)</span> <span class="k">if</span> <span class="n">data</span> <span class="k">else</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="APsystemsEZ1.APsystemsEZ1M.set_device_power_status" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">set_device_power_status</span><span class="p">(</span><span class="n">power_status</span><span class="p">)</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sets the power status of the device to either on or off. This method sends a request to the
+"setOnOff" endpoint with a specified power status parameter. The power status accepts multiple
+string representations: '0' or 'ON' to start the inverter, and '1', 'SLEEP', or 'OFF' to stop
+the inverter.</p>
+<p>If the provided power status does not match any of the accepted representations, the method
+raises a ValueError with a descriptive message.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>power_status</code></td>
+          <td>
+                <code><span title="APsystemsEZ1.Status">Status</span> | None</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The desired power status for the device, specified as '0', 'ON' for starting the inverter, or '1', 'SLEEP', 'OFF' for stopping it.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="APsystemsEZ1.Status">Status</span> | None</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>0/normal when on, 1/alarm when off</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If 'power_status' does not match the accepted values. The error message explains the valid values and their meanings.  Note: Internally, the method treats '0' and 'ON' as equivalent, both setting the power status to '0'. Similarly, '1', 'SLEEP', and 'OFF' are treated as equivalent, setting the power status to '1'.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>APsystemsEZ1/__init__.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">set_device_power_status</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">power_status</span><span class="p">:</span> <span class="n">Status</span> <span class="o">|</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Status</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sets the power status of the device to either on or off. This method sends a request to the</span>
+<span class="sd">    &quot;setOnOff&quot; endpoint with a specified power status parameter. The power status accepts multiple</span>
+<span class="sd">    string representations: &#39;0&#39; or &#39;ON&#39; to start the inverter, and &#39;1&#39;, &#39;SLEEP&#39;, or &#39;OFF&#39; to stop</span>
+<span class="sd">    the inverter.</span>
+
+<span class="sd">    If the provided power status does not match any of the accepted representations, the method</span>
+<span class="sd">    raises a ValueError with a descriptive message.</span>
+
+<span class="sd">    :param power_status: The desired power status for the device, specified as &#39;0&#39;, &#39;ON&#39; for</span>
+<span class="sd">                         starting the inverter, or &#39;1&#39;, &#39;SLEEP&#39;, &#39;OFF&#39; for stopping it.</span>
+<span class="sd">    :return: 0/normal when on, 1/alarm when off</span>
+<span class="sd">    :raises ValueError: If &#39;power_status&#39; does not match the accepted values. The error message</span>
+<span class="sd">                        explains the valid values and their meanings.</span>
+
+<span class="sd">    Note: Internally, the method treats &#39;0&#39; and &#39;ON&#39; as equivalent, both setting the power status</span>
+<span class="sd">    to &#39;0&#39;. Similarly, &#39;1&#39;, &#39;SLEEP&#39;, and &#39;OFF&#39; are treated as equivalent, setting the power status</span>
+<span class="sd">    to &#39;1&#39;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">status_map</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;0&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;ON&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;SLEEP&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;OFF&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">}</span>
+    <span class="n">status_value</span> <span class="o">=</span> <span class="n">status_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">power_status</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">status_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Invalid power status: expected &#39;0&#39;, &#39;ON&#39; or &#39;1&#39;,&#39;SLEEP&#39; or &#39;OFF&#39;, got &#39;</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">power_status</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="o">+</span> <span class="s2">&quot;&#39;</span><span class="se">\n</span><span class="s2"> Set &#39;0&#39; or &#39;ON&#39; to start the inverter | Set &#39;1&#39; or &#39;SLEEP&#39; or &#39;OFF&#39; to stop the inverter.&quot;</span>
+        <span class="p">)</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;setOnOff?status=</span><span class="si">{</span><span class="n">status_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;status&quot;</span><span class="p">]))</span> <span class="k">if</span> <span class="n">request</span> <span class="k">else</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="APsystemsEZ1.APsystemsEZ1M.set_max_power" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">set_max_power</span><span class="p">(</span><span class="n">power_limit</span><span class="p">)</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sets the maximum power limit of the device. This method sends a request to the "setMaxPower"
+endpoint with the specified power limit as a parameter. The power limit must be an integer
+within the range of 30 to 800 watts.</p>
+<p>If the provided power limit is outside this range, the method raises a ValueError.</p>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>power_limit</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>The desired maximum power setting for the device, in watts. Must be an integer between 30 and 800.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>int | None</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>(Newly) set max output power in watts</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>ValueError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If 'power_limit' is not within the range of 30 to 800.  The key in the 'data' object is: - 'maxPower': Indicates the newly set maximum power output of the device in watts.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>APsystemsEZ1/__init__.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">set_max_power</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">power_limit</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Sets the maximum power limit of the device. This method sends a request to the &quot;setMaxPower&quot;</span>
+<span class="sd">    endpoint with the specified power limit as a parameter. The power limit must be an integer</span>
+<span class="sd">    within the range of 30 to 800 watts.</span>
+
+<span class="sd">    If the provided power limit is outside this range, the method raises a ValueError.</span>
+
+<span class="sd">    :param power_limit: The desired maximum power setting for the device, in watts.</span>
+<span class="sd">                        Must be an integer between 30 and 800.</span>
+
+<span class="sd">    :return: (Newly) set max output power in watts</span>
+<span class="sd">    :raises ValueError: If &#39;power_limit&#39; is not within the range of 30 to 800.</span>
+
+<span class="sd">    The key in the &#39;data&#39; object is:</span>
+<span class="sd">    - &#39;maxPower&#39;: Indicates the newly set maximum power output of the device in watts.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="mi">30</span> <span class="o">&lt;=</span> <span class="n">power_limit</span> <span class="o">&lt;=</span> <span class="mi">800</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Invalid setMaxPower value: expected int between &#39;30&#39; and &#39;800&#39;, got &#39;</span><span class="si">{</span><span class="n">power_limit</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+        <span class="p">)</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;setMaxPower?p=</span><span class="si">{</span><span class="n">power_limit</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;maxPower&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">request</span> <span class="k">else</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.1e8ae164.min.js"></script>
+      
+    
+  </body>
+</html>
