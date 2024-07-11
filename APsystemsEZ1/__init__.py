@@ -66,6 +66,7 @@ class APsystemsEZ1M:
         self.base_url = f"http://{ip_address}:{port}"
         self.timeout = timeout
         self.session = session
+        self.max_power = 800
 
     async def _request(self, endpoint: str, retry: bool | None = True) -> dict | None:
         """
@@ -258,7 +259,7 @@ class APsystemsEZ1M:
         The key in the 'data' object is:
         - 'maxPower': Indicates the newly set maximum power output of the device in watts.
         """
-        if not 30 <= power_limit <= 800:
+        if not 30 <= power_limit <= self.max_power:
             raise ValueError(
                 f"Invalid setMaxPower value: expected int between '30' and '800', got '{power_limit}'"
             )
