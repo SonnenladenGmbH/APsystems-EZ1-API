@@ -1,5 +1,8 @@
 # APsystems EZ1 -  Python Library
 
+[![apsystems-ez1 @ PyPi](https://img.shields.io/pypi/v/apsystems-ez1?label=apsystems-ez1%20%40%20PyPi)](https://pypi.org/project/apsystems-ez1/)
+[![License GPL-3.0-or-later](https://img.shields.io/pypi/l/apsystems-ez1)](https://github.com/SonnenladenGmbH/APsystems-EZ1-API/blob/main/LICENSE)
+
 ## Overview
 
 The APsystems EZ1 Python library can be used to interact with APsystems EZ1 Microinverters. It provides a convenient way to communicate with the microinverter over your **local network**, allowing you to read and set various device parameters like power status, alarm information, device information, and power limits.
