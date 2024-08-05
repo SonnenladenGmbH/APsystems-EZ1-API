@@ -48,6 +48,7 @@ class APsystemsEZ1M:
         ip_address: str,
         port: int = 8050,
         timeout: int = 10,
+        max_power: int = 800,
         session: ClientSession | None = None,
     ):
         """
@@ -61,7 +62,7 @@ class APsystemsEZ1M:
         self.base_url = f"http://{ip_address}:{port}"
         self.timeout = timeout
         self.session = session
-        self.max_power = 800
+        self.max_power = max_power
 
     async def _request(self, endpoint: str, retry: bool | None = True) -> dict | None:
         """
