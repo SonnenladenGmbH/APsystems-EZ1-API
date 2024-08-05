@@ -1,13 +1,12 @@
 import pytest
-from APsystemsEZ1 import Status
 
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
     "test_id, output_data, expected_status",
     [
-        ("happy-on", {"data": {"status": 0}, "status": 0}, Status.normal),
-        ("happy-off", {"data": {"status": 1}, "status": 0}, Status.alarm),
+        ("happy-on", {"data": {"status": 0}, "status": 0}, True),
+        ("happy-off", {"data": {"status": 1}, "status": 0}, False),
     ],
 )
 async def test_get_device_power_status_happy_paths(

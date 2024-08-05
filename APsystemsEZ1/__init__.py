@@ -1,13 +1,8 @@
 from dataclasses import dataclass
-from enum import IntEnum
 
 from aiohttp import ClientSession
 from aiohttp.http_exceptions import HttpBadRequest
 
-
-class Status(IntEnum):
-    normal = 0
-    alarm = 1
 
 
 class InverterReturnedError(Exception):
@@ -26,10 +21,10 @@ class ReturnDeviceInfo:
 
 @dataclass
 class ReturnAlarmInfo:
-    og: Status
-    isce1: Status
-    isce2: Status
-    oe: Status
+    offgrid: bool
+    shortcircuit_1: bool
+    shortcircuit_2: bool
+    operating: bool
 
 
 @dataclass
@@ -147,24 +142,22 @@ class APsystemsEZ1M:
         makes a request to the "getAlarm" endpoint and returns a dictionary containing the alarm
         status for different parameters.
 
-        The 'data' field in the returned dictionary includes the status of several components,
-        each represented as a string indicating whether there is an alarm ('1') or normal operation ('0').
 
         The response contains the following attributes:
-        - __og__ (`Status`): Off-Grid Status (normal/0 when okay)
-        _ __isce1__ (`Status`): DC 1 Short Circuit Error status (normal/0 when okay)
-        _ __isce2__ (`Status`): DC 2 Short Circuit Error status (normal/0 when okay)
-        - __oe__ (`Status`): Output fault status (normal/0 when okay)
+        - __offgrid__ (`bool`): Off-Grid Status
+        _ __shortcircuit_1__ (`bool`): DC 1 Short Circuit Error status
+        _ __shortcircuit_2__ (`bool`): DC 2 Short Circuit Error status
+        - __operating__ (`bool`): All okay
 
         :return: Information about possible point of failures
         """
         response = await self._request("getAlarm")
         return (
             ReturnAlarmInfo(
-                og=Status(int(response["data"]["og"])),
-                isce1=Status(int(response["data"]["isce1"])),
-                isce2=Status(int(response["data"]["isce2"])),
-                oe=Status(int(response["data"]["oe"])),
+                offgrid=bool(int(response["data"]["og"])),
+                shortcircuit_1=bool(int(response["data"]["isce1"])),
+                shortcircuit_2=bool(int(response["data"]["isce2"])),
+                operating=not bool(int(response["data"]["oe"])),
             )
             if response
             else None
@@ -266,7 +259,7 @@ class APsystemsEZ1M:
         request = await self._request(f"setMaxPower?p={power_limit}")
         return int(request["data"]["maxPower"]) if request else None
 
-    async def get_device_power_status(self) -> Status | None:
+    async def get_device_power_status(self) -> bool | None:
         """
         Retrieves the current power status of the device. This method sends a request to the
         "getOnOff" endpoint and returns a dictionary containing the power status of the device.
@@ -278,11 +271,11 @@ class APsystemsEZ1M:
         :return: 0/normal when on, 1/alarm when off
         """
         response = await self._request("getOnOff")
-        return Status(int(response["data"]["status"])) if response else None
+        return not bool(int(response["data"]["status"])) if response else None
 
     async def set_device_power_status(
-        self, power_status: Status | None
-    ) -> Status | None:
+        self, power_status: bool
+    ) -> bool | None:
         """
         Sets the power status of the device to either on or off. This method sends a request to the
         "setOnOff" endpoint with a specified power status parameter. The power status accepts multiple
@@ -302,12 +295,9 @@ class APsystemsEZ1M:
         to '0'. Similarly, '1', 'SLEEP', and 'OFF' are treated as equivalent, setting the power status
         to '1'.
         """
-        status_map = {"0": "0", "ON": "0", "1": "1", "SLEEP": "1", "OFF": "1"}
-        status_value = status_map.get(str(power_status))
-        if status_value is None:
-            raise ValueError(
-                f"Invalid power status: expected '0', 'ON' or '1','SLEEP' or 'OFF', got '{str(power_status)}"
-                + "'\n Set '0' or 'ON' to start the inverter | Set '1' or 'SLEEP' or 'OFF' to stop the inverter."
-            )
+        if power_status:
+            status_value = "0"
+        else:
+            status_value = "1"
         request = await self._request(f"setOnOff?status={status_value}")
-        return Status(int(request["data"]["status"])) if request else None
+        return not bool(int(request["data"]["status"])) if request else None

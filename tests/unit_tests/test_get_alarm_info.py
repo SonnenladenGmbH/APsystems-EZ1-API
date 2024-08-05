@@ -1,5 +1,5 @@
 import pytest
-from APsystemsEZ1 import ReturnAlarmInfo, Status
+from APsystemsEZ1 import ReturnAlarmInfo
 
 
 @pytest.mark.asyncio
@@ -10,20 +10,20 @@ from APsystemsEZ1 import ReturnAlarmInfo, Status
         (
             {"og": "0", "isce1": "0", "isce2": "0", "oe": "0"},
             ReturnAlarmInfo(
-                og=Status.normal,
-                isce1=Status.normal,
-                isce2=Status.normal,
-                oe=Status.normal,
+                offgrid=False,
+                shortcircuit_1=False,
+                shortcircuit_2=False,
+                operating=True,
             ),
             "happy_path_all_normal",
         ),
         (
             {"og": "1", "isce1": "0", "isce2": "0", "oe": "0"},
             ReturnAlarmInfo(
-                og=Status.alarm,
-                isce1=Status.normal,
-                isce2=Status.normal,
-                oe=Status.normal,
+                offgrid=True,
+                shortcircuit_1=False,
+                shortcircuit_2=False,
+                operating=True,
             ),
             "happy_path_off_grid_alarm",
         ),
@@ -31,10 +31,10 @@ from APsystemsEZ1 import ReturnAlarmInfo, Status
         (
             {"og": "0", "isce1": "1", "isce2": "1", "oe": "1"},
             ReturnAlarmInfo(
-                og=Status.normal,
-                isce1=Status.alarm,
-                isce2=Status.alarm,
-                oe=Status.alarm,
+                offgrid=False,
+                shortcircuit_1=True,
+                shortcircuit_2=True,
+                operating=False,
             ),
             "edge_case_multiple_alarms",
         ),
