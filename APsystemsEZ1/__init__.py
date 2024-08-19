@@ -64,7 +64,7 @@ class APsystemsEZ1M:
         self.timeout = timeout
         self.session = session
         self.max_power = max_power
-        self.min_power
+        self.min_power = min_power
 
     async def _request(self, endpoint: str, retry: bool | None = True) -> dict | None:
         """
