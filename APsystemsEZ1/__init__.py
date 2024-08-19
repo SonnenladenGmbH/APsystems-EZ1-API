@@ -49,6 +49,7 @@ class APsystemsEZ1M:
         port: int = 8050,
         timeout: int = 10,
         max_power: int = 800,
+        min_power: int = 30,
         session: ClientSession | None = None,
     ):
         """
@@ -63,6 +64,7 @@ class APsystemsEZ1M:
         self.timeout = timeout
         self.session = session
         self.max_power = max_power
+        self.min_power
 
     async def _request(self, endpoint: str, retry: bool | None = True) -> dict | None:
         """
@@ -253,7 +255,7 @@ class APsystemsEZ1M:
         The key in the 'data' object is:
         - 'maxPower': Indicates the newly set maximum power output of the device in watts.
         """
-        if not 30 <= power_limit <= self.max_power:
+        if not self.min_power <= power_limit <= self.max_power:
             raise ValueError(
                 f"Invalid setMaxPower value: expected int between '30' and '800', got '{power_limit}'"
             )
