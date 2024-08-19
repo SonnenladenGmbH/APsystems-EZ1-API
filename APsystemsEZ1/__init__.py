@@ -262,7 +262,7 @@ class APsystemsEZ1M:
         request = await self._request(f"setMaxPower?p={power_limit}")
         return int(request["data"]["maxPower"]) if request else None
 
-    async def get_device_power_status(self) -> bool | None:
+    async def get_device_power_status(self) -> bool:
         """
         Retrieves the current power status of the device. This method sends a request to the
         "getOnOff" endpoint and returns a dictionary containing the power status of the device.
@@ -274,7 +274,14 @@ class APsystemsEZ1M:
         :return: 0/normal when on, 1/alarm when off
         """
         response = await self._request("getOnOff")
-        return not bool(int(response["data"]["status"])) if response else None
+
+        match (status := response["data"]["status"]):
+            case int():
+                return not bool(status)
+            case str() if status.isdigit():
+                return not bool(int(status))
+            case _:
+                raise InverterReturnedError
 
     async def set_device_power_status(
         self, power_status: bool

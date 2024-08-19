@@ -1,5 +1,7 @@
 import pytest
 
+from APsystemsEZ1 import InverterReturnedError
+
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
@@ -21,7 +23,6 @@ async def test_get_device_power_status_happy_paths(
     # Assert
     assert status == expected_status, f"Test failed for {test_id}"
 
-
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
     "test_id, output_data",
@@ -34,9 +35,8 @@ async def test_get_device_power_status_value_error(test_id, output_data, mock_re
     ez1m = mock_response(output_data)
 
     # Assert
-    with pytest.raises(ValueError):
+    with pytest.raises(InverterReturnedError):
         await ez1m.get_device_power_status()
-
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
