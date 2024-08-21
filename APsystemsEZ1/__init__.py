@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 from aiohttp import ClientSession
 from aiohttp.http_exceptions import HttpBadRequest
-
+from datetime import datetime as dt
 
 
 class InverterReturnedError(Exception):
@@ -43,6 +43,12 @@ class APsystemsEZ1M:
     power status, alarm information, device information, and power limits.
     """
 
+    @dataclass
+    class DebounceVal:
+        old_state: float = 0.0
+        base_state: float = 0.0
+        last_update: int = 0
+
     def __init__(
         self,
         ip_address: str,
@@ -51,7 +57,8 @@ class APsystemsEZ1M:
         max_power: int = 800,
         min_power: int = 30,
         session: ClientSession | None = None,
-    ):
+        debounce_values: bool = False,
+    ) -> None:
         """
         Initializes a new instance of the EZ1Microinverter class with the specified IP address
         and port.
@@ -65,6 +72,9 @@ class APsystemsEZ1M:
         self.session = session
         self.max_power = max_power
         self.min_power = min_power
+        self.debounce_values = debounce_values
+        self._e1 = self.DebounceVal()
+        self._e2 = self.DebounceVal()
 
     async def _request(self, endpoint: str, retry: bool | None = True) -> dict | None:
         """
@@ -100,6 +110,27 @@ class APsystemsEZ1M:
 
             if self.session is None:
                 await ses.close()
+
+    def _debounce(self, state: DebounceVal, new_state: float) -> float:
+        """Recover total value in case state is reset during a day."""
+        if (
+            isinstance(state.old_state, float)
+            and isinstance(new_state, float)
+            and state.old_state > new_state
+        ):
+            state.base_state = state.base_state + state.old_state
+
+        state.old_state = new_state
+
+        # reset basis each day
+        if state.last_update != dt.now().day:
+            state.last_update = dt.now().day
+            state.base_state = 0
+
+        if isinstance(new_state, float):
+            return new_state + state.base_state
+
+        return new_state
 
     async def get_device_info(self) -> ReturnDeviceInfo | None:
         """
@@ -186,6 +217,15 @@ class APsystemsEZ1M:
         :return: Information about energy/power-related information
         """
         response = await self._request("getOutputData")
+
+        if self.debounce_values and response:
+            response["data"].update(
+                {
+                    "e1": self._debounce(self._e1, response["data"]["e1"]),
+                    "e2": self._debounce(self._e2, response["data"]["e2"]),
+                }
+            )
+
         return ReturnOutputData(**response["data"]) if response else None
 
     async def get_total_output(self) -> float | None:
