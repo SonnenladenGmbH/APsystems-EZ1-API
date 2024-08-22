@@ -57,7 +57,7 @@ class APsystemsEZ1M:
         max_power: int = 800,
         min_power: int = 30,
         session: ClientSession | None = None,
-        debounce_values: bool = False,
+        enable_debounce: bool = False,
     ) -> None:
         """
         Initializes a new instance of the EZ1Microinverter class with the specified IP address
@@ -72,7 +72,7 @@ class APsystemsEZ1M:
         self.session = session
         self.max_power = max_power
         self.min_power = min_power
-        self.debounce_values = debounce_values
+        self.enable_debounce = enable_debounce
         self._e1 = self._DebounceVal()
         self._e2 = self._DebounceVal()
 
@@ -218,7 +218,7 @@ class APsystemsEZ1M:
         """
         response = await self._request("getOutputData")
 
-        if self.debounce_values and response:
+        if self.enable_debounce and response:
             response["data"].update(
                 {
                     "e1": self._debounce(self._e1, response["data"]["e1"]),
