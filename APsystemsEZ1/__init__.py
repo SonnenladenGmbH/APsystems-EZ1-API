@@ -44,7 +44,7 @@ class APsystemsEZ1M:
     """
 
     @dataclass
-    class DebounceVal:
+    class _DebounceVal:
         old_state: float = 0.0
         base_state: float = 0.0
         last_update: int = 0
@@ -73,8 +73,8 @@ class APsystemsEZ1M:
         self.max_power = max_power
         self.min_power = min_power
         self.debounce_values = debounce_values
-        self._e1 = self.DebounceVal()
-        self._e2 = self.DebounceVal()
+        self._e1 = self._DebounceVal()
+        self._e2 = self._DebounceVal()
 
     async def _request(self, endpoint: str, retry: bool | None = True) -> dict | None:
         """
@@ -111,7 +111,7 @@ class APsystemsEZ1M:
             if self.session is None:
                 await ses.close()
 
-    def _debounce(self, state: DebounceVal, new_state: float) -> float:
+    def _debounce(self, state: _DebounceVal, new_state: float) -> float:
         """Recover total value in case state is reset during a day."""
         if (
             isinstance(state.old_state, float)
