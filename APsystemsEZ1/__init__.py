@@ -125,7 +125,7 @@ class APsystemsEZ1M:
         # reset basis each day
         if state.last_update != dt.now().day:
             state.last_update = dt.now().day
-            state.base_state = 0
+            state.base_state = 0.0
 
         if isinstance(new_state, float):
             return new_state + state.base_state
