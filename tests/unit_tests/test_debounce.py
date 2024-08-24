@@ -1,6 +1,6 @@
-import APsystemsEZ1
 import datetime
 import pytest
+import APsystemsEZ1
 
 
 class MyDateTime(datetime.datetime):
