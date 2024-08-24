@@ -323,9 +323,7 @@ class APsystemsEZ1M:
             case _:
                 raise InverterReturnedError
 
-    async def set_device_power_status(
-        self, power_status: bool
-    ) -> bool | None:
+    async def set_device_power_status(self, power_status: bool) -> bool | None:
         """
         Sets the power status of the device to either on or off. This method sends a request to the
         "setOnOff" endpoint with a specified power status parameter. The power status accepts multiple
