@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 
+import datetime
 from aiohttp import ClientSession
 from aiohttp.http_exceptions import HttpBadRequest
-from datetime import datetime as dt
 
 
 class InverterReturnedError(Exception):
@@ -123,8 +123,8 @@ class APsystemsEZ1M:
         state.old_state = new_state
 
         # reset basis each day
-        if state.last_update != dt.now().day:
-            state.last_update = dt.now().day
+        if state.last_update != datetime.datetime.now().day:
+            state.last_update = datetime.datetime.now().day
             state.base_state = 0.0
 
         if isinstance(new_state, float):

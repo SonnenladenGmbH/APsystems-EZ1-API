@@ -3,10 +3,23 @@ import datetime
 from unittest import mock
 import pytest
 
+class MyDateTime(datetime.datetime):
+    _custom_now = None
+
+    class datetime:
+        @classmethod
+        def set_custom_now(cls, custom_now) -> None:
+            cls._custom_now = custom_now
+
+        @classmethod
+        def now(cls):
+            if cls._custom_now is not None:
+                return cls._custom_now
+            raise ValueError
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
-    "state_data, days, expected_state, test_step_id",
+    ("state_data, days, expected_state, test_step_id"),
     [
         (
             [0.0, 1.0, 2.1, 3.1],
@@ -47,7 +60,8 @@ import pytest
     ],
 )
 
-async def test_debounce(
+
+async def test_debounce(monkeypatch, 
     state_data, days, expected_state, test_step_id):
 
     assert len(state_data) == len(days), "'state_data' and 'days' need to have equal length."
@@ -56,11 +70,11 @@ async def test_debounce(
     debounce_state = APsystemsEZ1.APsystemsEZ1M._DebounceVal(0.0, 0.0)
     result_state = None
 
-    with mock.patch('datetime.datetime', wraps=datetime.datetime) as dt:
-        for value in list(zip(state_data, days)):
-            # Act
-            dt.now.return_value = datetime.datetime(2024, 8, value[1])
-            result_state = ez1m._debounce(debounce_state, value[0])
+    for value in list(zip(state_data, days)):
+        MyDateTime.datetime.set_custom_now(MyDateTime(2024, 8, value[1]))
+        # Act
+        monkeypatch.setattr(APsystemsEZ1, 'datetime', MyDateTime)
+        result_state = ez1m._debounce(debounce_state, value[0])
 
     # Assert
     assert result_state == expected_state, f"Test failed for {test_step_id}"
