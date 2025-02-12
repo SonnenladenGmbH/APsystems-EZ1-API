@@ -40,12 +40,12 @@ class ReturnOutputData:
         '''The data attribute needs to be set manually because the inverter local interface 
         may return more results than the existing data attributes (such as originalData),
           resulting in an error. '''
-        self.p1 = data["p1"]
-        self.e1 = data["e1"]
-        self.te1 = data["te1"]
-        self.p2 = data["p2"]
-        self.e2 = data["e2"]
-        self.te2 = data["te2"]
+        self.p1 = data.get("p1", 0.0)
+        self.e1 = data.get("e1", 0.0)
+        self.te1 = data.get("te1", 0.0)
+        self.p2 = data.get("p2", 0.0)
+        self.e2 = data.get("e2", 0.0)
+        self.te2 = data.get("te2", 0.0)
 
 class APsystemsEZ1M:
     """This class represents an EZ1 Microinverter and provides methods to interact with it
