@@ -16,7 +16,8 @@ from APsystemsEZ1 import ReturnOutputData
                     "p2": 200.0,
                     "e2": 75.0,
                     "te2": 750.0,
-                }, "status": 0
+                },
+                "status": 0,
             },
             ReturnOutputData(
                 p1=100.0, e1=50.0, te1=500.0, p2=200.0, e2=75.0, te2=750.0
@@ -32,7 +33,8 @@ from APsystemsEZ1 import ReturnOutputData
                     "p2": 0.0,
                     "e2": 0.0,
                     "te2": 0.0,
-                }, "status": 0
+                },
+                "status": 0,
             },
             ReturnOutputData(p1=0.0, e1=0.0, te1=0.0, p2=0.0, e2=0.0, te2=0.0),
             "happy_path_2",
@@ -47,7 +49,8 @@ from APsystemsEZ1 import ReturnOutputData
                     "p2": -1.0,
                     "e2": -1.0,
                     "te2": -1.0,
-                }, "status": 0
+                },
+                "status": 0,
             },
             ReturnOutputData(p1=-1.0, e1=-1.0, te1=-1.0, p2=-1.0, e2=-1.0, te2=-1.0),
             "edge_case_negative_values",
@@ -75,16 +78,13 @@ async def test_get_output_data_happy_paths(
         ({"data": {}, "status": 0}, "error_case_empty_data"),
     ],
 )
-async def test_get_output_data_error_empty_data(response_data, test_id, mock_response):
+async def test_get_output_data_error_nulled_data(response_data, test_id, mock_response):
     # Arrange
     ez1m = mock_response(response_data)
 
     # Assert
-    with pytest.raises(TypeError) as exc_info:
-        await ez1m.get_output_data()
-    assert "missing 6 required positional arguments" in str(
-        exc_info.value
-    ), f"Test Failed: {test_id}"
+    data = await ez1m.get_output_data()
+    assert data == ReturnOutputData(p1=0.0, e1=0.0, te1=0.0, p2=0.0, e2=0.0, te2=0.0)
 
 
 @pytest.mark.asyncio
