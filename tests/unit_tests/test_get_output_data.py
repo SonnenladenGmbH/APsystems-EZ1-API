@@ -55,6 +55,22 @@ from APsystemsEZ1 import ReturnOutputData
             ReturnOutputData(p1=-1.0, e1=-1.0, te1=-1.0, p2=-1.0, e2=-1.0, te2=-1.0),
             "edge_case_negative_values",
         ),
+        (
+            {
+                "data": {
+                    "originalData": "ghkasgdjhasgfdjgfahtjsdfjahgsdjghasdjasfzdjgasfhd",
+                    "p1": 0.0,
+                    "e1": 0.0,
+                    "te1": 0.0,
+                    "p2": 0.0,
+                    "e2": 0.0,
+                    "te2": 0.0,
+                },
+                "status": 0,
+            },
+            ReturnOutputData(p1=0.0, e1=0.0, te1=0.0, p2=0.0, e2=0.0, te2=0.0),
+            "happy_path_3_additional_data",
+        ),
     ],
 )
 async def test_get_output_data_happy_paths(
@@ -72,19 +88,25 @@ async def test_get_output_data_happy_paths(
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
-    "response_data, test_id",
+    "response_data, expected_output, test_id",
     [
         # Error cases
-        ({"data": {}, "status": 0}, "error_case_empty_data"),
+        (
+            {"data": {}, "status": 0},
+            ReturnOutputData(p1=0.0, e1=0.0, te1=0.0, p2=0.0, e2=0.0, te2=0.0),
+            "error_case_empty_data",
+        ),
     ],
 )
-async def test_get_output_data_error_nulled_data(response_data, test_id, mock_response):
+async def test_get_output_data_error_nulled_data(
+    response_data, expected_output, test_id, mock_response
+):
     # Arrange
     ez1m = mock_response(response_data)
 
     # Assert
     data = await ez1m.get_output_data()
-    assert data == ReturnOutputData(p1=0.0, e1=0.0, te1=0.0, p2=0.0, e2=0.0, te2=0.0)
+    assert data == expected_output
 
 
 @pytest.mark.asyncio
