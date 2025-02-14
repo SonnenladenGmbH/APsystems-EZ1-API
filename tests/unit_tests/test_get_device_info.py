@@ -25,8 +25,31 @@ from APsystemsEZ1 import ReturnDeviceInfo
                 ipAddr="192.168.1.2",
                 minPower=100,
                 maxPower=1000,
+                isBatterySystem=False
             ),
             "happy_path_1",
+        ),
+                (
+            {
+                "data": {
+                    "deviceId": "12345",
+                    "devVer": "1.0_b",
+                    "ssid": "Home_Network",
+                    "ipAddr": "192.168.1.2",
+                    "minPower": 100,
+                    "maxPower": 1000,
+                }, "status": 0
+            },
+            ReturnDeviceInfo(
+                deviceId="12345",
+                devVer="1.0_b",
+                ssid="Home_Network",
+                ipAddr="192.168.1.2",
+                minPower=100,
+                maxPower=1000,
+                isBatterySystem=True
+            ),
+            "happy_path_battery_backup_1",
         ),
         # Edge cases
         (
@@ -41,7 +64,7 @@ from APsystemsEZ1 import ReturnDeviceInfo
                 }, "status": 0
             },
             ReturnDeviceInfo(
-                deviceId="", devVer="", ssid="", ipAddr="", minPower=0, maxPower=0
+                deviceId="", devVer="", ssid="", ipAddr="", minPower=0, maxPower=0, isBatterySystem=False
             ),
             "edge_case_empty_strings_and_zeros",
         ),

@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+import re
 
 import datetime
 from aiohttp import ClientSession
@@ -17,6 +18,7 @@ class ReturnDeviceInfo:
     ipAddr: str
     minPower: int
     maxPower: int
+    isBatterySystem: bool
 
 
 @dataclass
@@ -46,6 +48,8 @@ class ReturnOutputData:
         self.p2 = data.get("p2", 0.0)
         self.e2 = data.get("e2", 0.0)
         self.te2 = data.get("te2", 0.0)
+
+IS_BATTERY_REGEX = re.compile("^.*_b$")
 
 class APsystemsEZ1M:
     """This class represents an EZ1 Microinverter and provides methods to interact with it
@@ -175,6 +179,7 @@ class APsystemsEZ1M:
                 ipAddr=response["data"]["ipAddr"],
                 minPower=int(response["data"]["minPower"]),
                 maxPower=int(response["data"]["maxPower"]),
+                isBatterySystem=bool(IS_BATTERY_REGEX.match(response["data"]["devVer"]))
             )
             if response and response.get("data")
             else None
