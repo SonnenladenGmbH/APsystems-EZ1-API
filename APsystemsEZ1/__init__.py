@@ -109,7 +109,7 @@ class APsystemsEZ1M:
         try:
             async with ses.get(url, timeout=self.timeout) as resp:
                 data = await resp.json()
-                _LOGGER.debug("%s: %s", endpoint, resp)
+                _LOGGER.debug("%s: %s", endpoint, await resp.json())
 
                 # Handle reponse
                 if resp.status != 200:
