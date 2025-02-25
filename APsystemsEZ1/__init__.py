@@ -1,10 +1,11 @@
 from dataclasses import dataclass
 import re
-
+import logging
 import datetime
 from aiohttp import ClientSession
 from aiohttp.http_exceptions import HttpBadRequest
 
+_LOGGER = logging.getLogger(__name__)
 
 class InverterReturnedError(Exception):
     pass
@@ -108,6 +109,7 @@ class APsystemsEZ1M:
         try:
             async with ses.get(url, timeout=self.timeout) as resp:
                 data = await resp.json()
+                _LOGGER.debug("%s: %s", endpoint, resp)
 
                 # Handle reponse
                 if resp.status != 200:
