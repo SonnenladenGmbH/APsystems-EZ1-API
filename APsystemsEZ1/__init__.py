@@ -127,8 +127,6 @@ class APsystemsEZ1M:
 
     def _debounce(self, state: _DebounceVal, new_state: float) -> float:
         """Recover total value in case state is reset during a day."""
-        if isinstance(new_state, int):
-            new_state = float(new_state)
         if (
             isinstance(state.old_state, float)
             and isinstance(new_state, float)
