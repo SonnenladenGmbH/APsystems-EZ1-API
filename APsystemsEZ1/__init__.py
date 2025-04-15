@@ -232,15 +232,16 @@ class APsystemsEZ1M:
         :return: Information about energy/power-related information
         """
         response = await self._request("getOutputData")
-        response["data"].update(
-            {
-                key: float(value)
-                if isinstance(value, int)
-                else value
-                for key, value
-                in response["data"]
-            }
-        )
+        if response:
+            response["data"].update(
+                {
+                    key: float(value)
+                    if isinstance(value, int)
+                    else value
+                    for key, value
+                    in response["data"].items()
+                }
+            )
 
         if self.enable_debounce and response:
             response["data"].update(
