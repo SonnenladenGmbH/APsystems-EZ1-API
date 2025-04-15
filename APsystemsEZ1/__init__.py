@@ -49,9 +49,7 @@ class ReturnOutputData:
         self.e2 = data.get("e2", 0.0)
         self.te2 = data.get("te2", 0.0)
 
-
 IS_BATTERY_REGEX = re.compile("^.*_b$")
-
 
 class APsystemsEZ1M:
     """This class represents an EZ1 Microinverter and provides methods to interact with it
