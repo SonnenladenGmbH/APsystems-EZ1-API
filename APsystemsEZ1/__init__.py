@@ -49,7 +49,9 @@ class ReturnOutputData:
         self.e2 = data.get("e2", 0.0)
         self.te2 = data.get("te2", 0.0)
 
+
 IS_BATTERY_REGEX = re.compile("^.*_b$")
+
 
 class APsystemsEZ1M:
     """This class represents an EZ1 Microinverter and provides methods to interact with it
@@ -64,14 +66,14 @@ class APsystemsEZ1M:
         last_update: int = 0
 
     def __init__(
-        self,
-        ip_address: str,
-        port: int = 8050,
-        timeout: int = 10,
-        max_power: int = 800,
-        min_power: int = 30,
-        session: ClientSession | None = None,
-        enable_debounce: bool = False,
+            self,
+            ip_address: str,
+            port: int = 8050,
+            timeout: int = 10,
+            max_power: int = 800,
+            min_power: int = 30,
+            session: ClientSession | None = None,
+            enable_debounce: bool = False,
     ) -> None:
         """
         Initializes a new instance of the EZ1Microinverter class with the specified IP address
@@ -115,7 +117,7 @@ class APsystemsEZ1M:
                 if data["message"] == "SUCCESS":
                     return data
                 if (
-                    retry
+                        retry
                 ):  # Re-run request when the inverter returned failed because of unknown reason
                     return await self._request(endpoint, retry=False)
                 raise InverterReturnedError
@@ -128,9 +130,9 @@ class APsystemsEZ1M:
     def _debounce(self, state: _DebounceVal, new_state: float) -> float:
         """Recover total value in case state is reset during a day."""
         if (
-            isinstance(state.old_state, float)
-            and isinstance(new_state, float)
-            and state.old_state > new_state
+                isinstance(state.old_state, float)
+                and isinstance(new_state, float)
+                and state.old_state > new_state
         ):
             state.base_state = state.base_state + state.old_state
 
@@ -232,6 +234,15 @@ class APsystemsEZ1M:
         :return: Information about energy/power-related information
         """
         response = await self._request("getOutputData")
+        response["data"].update(
+            {
+                key: float(value)
+                if isinstance(value, int)
+                else value
+                for key, value
+                in response["data"]
+            }
+        )
 
         if self.enable_debounce and response:
             response["data"].update(
