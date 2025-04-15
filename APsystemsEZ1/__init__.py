@@ -125,7 +125,7 @@ class APsystemsEZ1M:
             if self.session is None:
                 await ses.close()
 
-    def _debounce(self, state: _DebounceVal, new_state: float | int) -> float:
+    def _debounce(self, state: _DebounceVal, new_state: float) -> float:
         """Recover total value in case state is reset during a day."""
         if isinstance(new_state, int):
             new_state = float(new_state)
