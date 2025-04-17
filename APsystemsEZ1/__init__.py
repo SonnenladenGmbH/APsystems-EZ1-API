@@ -233,15 +233,13 @@ class APsystemsEZ1M:
         """
         response = await self._request("getOutputData")
         if response:
-            response["data"].update(
-                {
-                    key: float(value)
-                    if isinstance(value, int)
-                    else value
-                    for key, value
-                    in response["data"].items()
-                }
-            )
+            response["data"] = {
+                key: float(value)
+                if isinstance(value, int)
+                else value
+                for key, value
+                in response["data"].items()
+            }
 
         if self.enable_debounce and response:
             response["data"].update(
