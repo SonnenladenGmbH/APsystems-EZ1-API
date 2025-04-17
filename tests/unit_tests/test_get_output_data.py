@@ -71,6 +71,21 @@ from APsystemsEZ1 import ReturnOutputData
             ReturnOutputData(p1=0.0, e1=0.0, te1=0.0, p2=0.0, e2=0.0, te2=0.0),
             "happy_path_3_additional_data",
         ),
+                (
+            {
+                "data": {
+                    "p1": 0,
+                    "e1": 0,
+                    "te1": 0,
+                    "p2": 0,
+                    "e2": 0,
+                    "te2": 0,
+                },
+                "status": 0,
+            },
+            ReturnOutputData(p1=0.0, e1=0.0, te1=0.0, p2=0.0, e2=0.0, te2=0.0),
+            "happy_path_3_int_to_float_cast",
+        ),
     ],
 )
 async def test_get_output_data_happy_paths(
