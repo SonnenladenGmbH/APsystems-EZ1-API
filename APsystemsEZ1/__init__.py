@@ -91,12 +91,13 @@ class APsystemsEZ1M:
         self._e1 = self._DebounceVal()
         self._e2 = self._DebounceVal()
 
-    async def _request(self, endpoint: str, retry: bool | None = True) -> dict | None:
+    async def _request(self, endpoint: str, retry: int = 3) -> dict | None:
         """
         A private method to send HTTP requests to the specified endpoint of the microinverter.
         This method is used internally by other class methods to perform GET or POST requests.
 
         :param endpoint: The API endpoint to make the request to.
+        :param retry: Number of retry attempts if the request fails.
 
         :return: The JSON response from the microinverter as a dictionary.
         :raises: Prints an error message if the HTTP request fails for any reason.
@@ -111,15 +112,13 @@ class APsystemsEZ1M:
                 data = await resp.json()
                 _LOGGER.debug("%s: %s", endpoint, data)
 
-                # Handle reponse
+                # Handle response
                 if resp.status != 200:
                     raise HttpBadRequest(f"HTTP Error: {resp.status}")
                 if data["message"] == "SUCCESS":
                     return data
-                if (
-                    retry
-                ):  # Re-run request when the inverter returned failed because of unknown reason
-                    return await self._request(endpoint, retry=False)
+                if retry > 0:  # Re-run request when the inverter returned failed because of unknown reason
+                    return await self._request(endpoint, retry=retry - 1)
                 raise InverterReturnedError
         finally:
             # Close if session created on per-execution base
