@@ -118,6 +118,7 @@ class APsystemsEZ1M:
                 if data["message"] == "SUCCESS":
                     return data
                 if retry > 0:  # Re-run request when the inverter returned failed because of unknown reason
+                    _LOGGER.debug(f"The request to {endpoint} failed. Retrying (retry count: {retry})...")
                     return await self._request(endpoint, retry=retry - 1)
                 raise InverterReturnedError
         finally:
