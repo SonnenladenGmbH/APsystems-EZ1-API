@@ -295,13 +295,16 @@ class APsystemsEZ1M:
     async def get_max_power(self) -> int | None:
         """Retrieves the set maximum power setting of the device. This method makes a request to the
         "getMaxPower" endpoint and returns a dictionary containing the maximum power limit of the device set by the user.
+        Note that in some firmware versions, the "maxPower" response key has been renamed to "power".
 
         :return: Max output power in watts
         """
         response = await self._request("getMaxPower")
-        if response is None or response["data"]["maxPower"] == "":
-            return None
-        return int(response["data"]["maxPower"])
+        if response and int(response["data"].get("maxPower", 0)) > 0:
+            return int(response["data"].get("maxPower", 0))
+        if response and int(response["data"].get("power", 0)) > 0:
+            return int(response["data"].get("power", 0))
+        return None
 
     async def set_max_power(self, power_limit: int) -> int | None:
         """
@@ -319,13 +322,18 @@ class APsystemsEZ1M:
 
         The key in the 'data' object is:
         - 'maxPower': Indicates the newly set maximum power output of the device in watts.
+        Note that in some firmware versions, the "maxPower" response key has been renamed to "power".
         """
         if not self.min_power <= power_limit <= self.max_power:
             raise ValueError(
                 f"Invalid setMaxPower value: expected int between '30' and '800', got '{power_limit}'"
             )
         request = await self._request(f"setMaxPower?p={power_limit}")
-        return int(request["data"]["maxPower"]) if request else None
+        if request and int(request["data"].get("maxPower", 0)) > 0:
+            return int(request["data"]["maxPower"])
+        if request and int(request["data"].get("power", 0)) > 0:
+            return int(request["data"]["power"])
+        return None
 
     async def get_device_power_status(self) -> bool:
         """
