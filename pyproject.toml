@@ -16,6 +16,7 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.11"
 aiohttp = "^3"
+pydantic = "^2.11.7"
 
 [tool.poetry.group.dev.dependencies]
 mkdocstrings = "^0.24.0"

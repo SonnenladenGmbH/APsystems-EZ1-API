@@ -10,3 +10,11 @@ def mock_response():
         ez1m._request = AsyncMock(return_value=return_values)
         return ez1m
     yield inner
+
+@pytest.fixture(scope="function")
+def mock_response_ezhi():
+    def inner(return_values: Any) -> APsystemsEZ1.ezhi.APsystemsEZHI:
+        ezhi = APsystemsEZ1.ezhi.APsystemsEZHI(ip_address="0.0.0.0")
+        ezhi._request = AsyncMock(return_value=return_values)
+        return ezhi
+    yield inner
