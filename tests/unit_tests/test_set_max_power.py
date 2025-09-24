@@ -18,9 +18,27 @@ async def test_set_max_power_happy_path(power_limit, expected, mock_response):
     result = await ez1m.set_max_power(power_limit)
 
     # Assert
-    assert (
-        result == expected
-    ), f"Expected max power to be set to {expected}, but got {result}"
+    assert result == expected, f"Expected max power to be set to {expected}, but got {result}"
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "power_limit, expected",
+    [
+        (80, 80),  # ID: test-happy-path-lower-bound
+        (900, 900),  # ID: test-happy-path-mid-value
+        (1800, 1800),  # ID: test-happy-path-upper-bound
+    ],
+)
+async def test_set_max_power_happy_path_ez1d(power_limit, expected, mock_response_ez1d):
+    # Arrange
+    ez1m = mock_response_ez1d({"data": {"power": power_limit}, "status": 0})
+
+    # Act
+    result = await ez1m.set_max_power(power_limit)
+
+    # Assert
+    assert result == expected, f"Expected max power to be set to {expected}, but got {result}"
 
 
 @pytest.mark.asyncio

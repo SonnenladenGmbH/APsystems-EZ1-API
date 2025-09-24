@@ -1,11 +1,14 @@
 from dataclasses import dataclass
+from enum import Enum
 import re
 import logging
 import datetime
+from typing import Dict
 from aiohttp import ClientSession
 from aiohttp.http_exceptions import HttpBadRequest
 
 _LOGGER = logging.getLogger(__name__)
+
 
 class InverterReturnedError(Exception):
     pass
@@ -50,9 +53,35 @@ class ReturnOutputData:
         self.e2 = data.get("e2", 0.0)
         self.te2 = data.get("te2", 0.0)
 
-IS_BATTERY_REGEX = re.compile("^.*_b$")
 
-class APsystemsEZ1M:
+class Model(str, Enum):
+    EZ1M = "EZ1M"
+    EZ1D = "EZ1D"
+
+
+@dataclass
+class DeviceConfig:
+    model: Model
+    endpoints: Dict[str, str]
+    fields: Dict[str, str]
+
+
+IS_BATTERY_REGEX = re.compile("^.*_b$")
+_DEVICE_CONFIG = [
+    DeviceConfig(
+        model=Model.EZ1M,
+        endpoints=dict(set_max_power="setMaxPower", get_max_power="getMaxPower"),
+        fields=dict(max_power="maxPower"),
+    ),
+    DeviceConfig(
+        model=Model.EZ1D,
+        endpoints=dict(set_max_power="setDefaultMaxPower", get_max_power="getDefaultMaxPower"),
+        fields=dict(max_power="power"),
+    ),
+]
+
+
+class APsystemsEZ1:
     """This class represents an EZ1 Microinverter and provides methods to interact with it
     over a network. The class allows for getting and setting various device parameters like
     power status, alarm information, device information, and power limits.
@@ -73,6 +102,7 @@ class APsystemsEZ1M:
         min_power: int = 30,
         session: ClientSession | None = None,
         enable_debounce: bool = False,
+        model: Model = Model.EZ1M,
     ) -> None:
         """
         Initializes a new instance of the EZ1Microinverter class with the specified IP address
@@ -90,6 +120,7 @@ class APsystemsEZ1M:
         self.enable_debounce = enable_debounce
         self._e1 = self._DebounceVal()
         self._e2 = self._DebounceVal()
+        self._device_config = next((cfg for cfg in _DEVICE_CONFIG if cfg.model == model), _DEVICE_CONFIG[0])
 
     async def _request(self, endpoint: str, retry: int = 3) -> dict | None:
         """
@@ -173,18 +204,27 @@ class APsystemsEZ1M:
 
         """
         response = await self._request("getDeviceInfo")
-        return (
-            ReturnDeviceInfo(
-                deviceId=response["data"]["deviceId"],
-                devVer=response["data"]["devVer"],
-                ssid=response["data"]["ssid"],
-                ipAddr=response["data"]["ipAddr"],
-                minPower=int(response["data"]["minPower"]),
-                maxPower=int(response["data"]["maxPower"]),
-                isBatterySystem=bool(IS_BATTERY_REGEX.match(response["data"]["devVer"]))
-            )
-            if response and response.get("data")
-            else None
+
+        if response is None:
+            return None
+        data = response.get("data", None)
+        if data is None or not isinstance(data, dict) or len(data) == 0:
+            return None
+
+        # Determine model based on devVer
+        devVer = response["data"]["devVer"].split(" ")
+        if len(devVer) > 1:
+            model = devVer[0]
+            self._device_config = next((cfg for cfg in _DEVICE_CONFIG if cfg.model == model), _DEVICE_CONFIG[0])
+
+        return ReturnDeviceInfo(
+            deviceId=response["data"]["deviceId"],
+            devVer=response["data"]["devVer"],
+            ssid=response["data"]["ssid"],
+            ipAddr=response["data"]["ipAddr"],
+            minPower=int(response["data"]["minPower"]),
+            maxPower=int(response["data"]["maxPower"]),
+            isBatterySystem=bool(IS_BATTERY_REGEX.match(response["data"]["devVer"])),
         )
 
     async def get_alarm_info(self) -> ReturnAlarmInfo | None:
@@ -298,10 +338,10 @@ class APsystemsEZ1M:
 
         :return: Max output power in watts
         """
-        response = await self._request("getMaxPower")
-        if response is None or response["data"]["maxPower"] == "":
+        response = await self._request(self._device_config.endpoints["get_max_power"])
+        if response is None or response["data"][self._device_config.fields["max_power"]] == "":
             return None
-        return int(response["data"]["maxPower"])
+        return int(float(response["data"][self._device_config.fields["max_power"]]))
 
     async def set_max_power(self, power_limit: int) -> int | None:
         """
@@ -322,10 +362,11 @@ class APsystemsEZ1M:
         """
         if not self.min_power <= power_limit <= self.max_power:
             raise ValueError(
-                f"Invalid setMaxPower value: expected int between '30' and '800', got '{power_limit}'"
+                f"Invalid setMaxPower value: expected int between '{self.min_power}' "
+                + f"and '{self.max_power}', got '{power_limit}'"
             )
-        request = await self._request(f"setMaxPower?p={power_limit}")
-        return int(request["data"]["maxPower"]) if request else None
+        request = await self._request(self._device_config.endpoints["set_max_power"] + "?p={power_limit}")
+        return int(request["data"][self._device_config.fields["max_power"]]) if request else None
 
     async def get_device_power_status(self) -> bool:
         """
@@ -374,3 +415,21 @@ class APsystemsEZ1M:
             status_value = "1"
         request = await self._request(f"setOnOff?status={status_value}")
         return not bool(int(request["data"]["status"])) if request else None
+
+
+# Backward compatibility
+APsystemsEZ1M = APsystemsEZ1
+
+class APsystemsEZ1D(APsystemsEZ1):
+    def __init__(
+        self,
+        ip_address,
+        port=8050,
+        timeout=10,
+        max_power=1800,
+        min_power=80,
+        session=None,
+        enable_debounce=False,
+        model=Model.EZ1D,
+    ):
+        super().__init__(ip_address, port, timeout, max_power, min_power, session, enable_debounce, model)

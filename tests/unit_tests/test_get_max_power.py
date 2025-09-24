@@ -21,6 +21,26 @@ async def test_get_max_power_happy_path(test_id, output_data, expected, mock_res
     assert result == expected, f"Test ID: {test_id}"
 
 
+@pytest.mark.parametrize(
+    "test_id, output_data, expected",
+    [
+        ("happy-100", {"data": {"power": "100"}, "status": 0}, 100),
+        ("happy-200", {"data": {"power": "200"}, "status": 0}, 200),
+        ("happy-1000", {"data": {"power": "1000"}, "status": 0}, 1000),
+    ],
+)
+@pytest.mark.asyncio
+async def test_get_max_power_happy_path_ez1d(test_id, output_data, expected, mock_response_ez1d):
+    # Arrange
+    ez1m = mock_response_ez1d(output_data)
+
+    # Act
+    result = await ez1m.get_max_power()
+
+    # Assert
+    assert result == expected, f"Test ID: {test_id}"
+
+
 # Test cases for edge cases
 @pytest.mark.parametrize(
     "test_id, output_data, expected",
