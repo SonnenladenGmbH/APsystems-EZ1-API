@@ -50,6 +50,40 @@ class ReturnOutputData:
         self.e2 = data.get("e2", 0.0)
         self.te2 = data.get("te2", 0.0)
 
+@dataclass
+class ReturnOutputDataDetail:
+    c1: float
+    v1: float
+    p1: float
+    e1: float
+    te1: float
+    c2: float
+    v2: float
+    p2: float
+    e2: float
+    te2: float
+    gf: float
+    gv: float
+    t: float
+
+    def __init__(self, **data):
+        '''The data attribute needs to be set manually because the inverter local interface 
+        may return more results than the existing data attributes (such as originalData),
+          resulting in an error. '''
+        self.c1 = data.get("c1", 0.0)
+        self.v1 = data.get("v1", 0.0)
+        self.p1 = data.get("p1", 0.0)
+        self.e1 = data.get("e1", 0.0)
+        self.te1 = data.get("te1", 0.0)
+        self.c2 = data.get("c2", 0.0)
+        self.v2 = data.get("v2", 0.0)
+        self.p2 = data.get("p2", 0.0)
+        self.e2 = data.get("e2", 0.0)
+        self.te2 = data.get("te2", 0.0)
+        self.gf = data.get("gf", 50.0)
+        self.gv = data.get("gv", 230.0)
+        self.t = data.get("t", 0.0)
+
 IS_BATTERY_REGEX = re.compile("^.*_b$")
 
 class APsystemsEZ1M:
@@ -253,6 +287,52 @@ class APsystemsEZ1M:
 
         return ReturnOutputData(**response["data"]) if response else None
 
+        async def get_output_data_detail(self) -> ReturnOutputDataDetail | None:
+        """
+        Retrieves the output data from the device. This method calls a private method `_request`
+        with the endpoint "getOutputDataDetail" to fetch the device's detailed output data.
+
+        The returned data includes various parameters such as power output status ('p1', 'p2'),
+        energy readings ('e1', 'e2'), and total energy ('te1', 'te2') for two different inputs
+        of the inverter. Additionally, it provides a status message and the device ID.
+
+        The response contains the following attributes:
+        - __c1__ (`float`): Current output status of inverter input 1
+        - __v1__ (`float`): Voltage output status of inverter input 1
+        - __p1__ (`float`): Power output status of inverter input 1
+        - __e1__ (`float`): Energy reading for inverter input 1
+        - __te1__ (`float`): Total energy for inverter input 1
+        - __c2__ (`float`): Current output status of inverter input 2
+        - __v2__ (`float`): Voltage output status of inverter input 2
+        - __p2__ (`float`): Power output status of inverter input 2
+        - __e2__ (`float`): Energy reading for inverter input 2
+        - __te2__ (`float`): Total energy for inverter input 2
+        - __gf__ (`float`): Frequency of Network connection
+        - __gv__ (`float`): Voltage of Network connection
+        - __t__ (`float`): Temperature of inverter
+
+        :return: Information about energy/power-related information
+        """
+        response = await self._request("getOutputDataDetail")
+        if response:
+            response["data"] = {
+                key: float(value)
+                if isinstance(value, int)
+                else value
+                for key, value
+                in response["data"].items()
+            }
+        
+        if self.enable_debounce and response:
+            response["data"].update(
+                {
+                    "e1": self._debounce(self._e1, response["data"]["e1"]),
+                    "e2": self._debounce(self._e2, response["data"]["e2"]),
+                }
+            )
+
+        return ReturnOutputDataDetail(**response["data"]) if response else None
+
     async def get_total_output(self) -> float | None:
         """
         Retrieves and calculates the combined power output status of inverter inputs 1 and 2.
@@ -326,6 +406,41 @@ class APsystemsEZ1M:
             )
         request = await self._request(f"setMaxPower?p={power_limit}")
         return int(request["data"]["maxPower"]) if request else None
+
+        async def get_default_max_power(self) -> int | None:
+        """Retrieves the set default maximum power setting of the device. This method makes a request to the
+        "getDefaultMaxPower" endpoint and returns a dictionary containing the maximum power limit of the device set by the user.
+
+        :return: Max output power in watts
+        """
+        response = await self._request("getDefaultMaxPower")
+        if response is None or response["data"]["power"] == "":
+            return None
+        return int(response["data"]["power"])
+
+    async def set_default_max_power(self, power_limit: int) -> int | None:
+        """
+        Sets the default maximum power limit of the device. This method sends a request to the "setDefaultMaxPower"
+        endpoint with the specified power limit as a parameter. The power limit must be an integer
+        within the range of 30 to 800 watts.
+
+        If the provided power limit is outside this range, the method raises a ValueError.
+
+        :param power_limit: The desired maximum power setting for the device, in watts.
+                            Must be an integer between 30 and 800.
+
+        :return: (Newly) set default max output power in watts
+        :raises ValueError: If 'power_limit' is not within the range of 30 to 800.
+
+        The key in the 'data' object is:
+        - 'maxPower': Indicates the newly set default maximum power output of the device in watts.
+        """
+        if not self.min_power <= power_limit <= self.max_power:
+            raise ValueError(
+                f"Invalid setDefaultMaxPower value: expected int between '30' and '800', got '{power_limit}'"
+            )
+        request = await self._request(f"setDefaultMaxPower?p={power_limit}")
+        return int(request["data"]["power"]) if request else None
 
     async def get_device_power_status(self) -> bool:
         """
