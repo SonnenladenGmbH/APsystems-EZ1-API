@@ -26,6 +26,10 @@ pytest-cov = "^4.1.0"
 pytest-pretty = "^1.2.0"
 pytest-asyncio = "^0.21.1"
 
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "strict"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
